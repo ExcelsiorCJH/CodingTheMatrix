@@ -1,0 +1,558 @@
+# Chap 07
+
+# 차원 - Dimension
+
+## 7.1 기저의 크기
+
+### 7.1.1 Morphing 보조 정리와 그 응용
+
+***Lemma (Morphing Lemma)*** : $\mathcal{V}$ 는 벡터공간이라고 하자. $S$ 는 $\mathcal{V}$ 에 대한 생성자들의 집합이라 하고, $B$ 는 $\mathcal{V}$ 에 속하는 벡터들로 구성된 선형독립인 집합(즉, 기저)이라고 하면, $|S| \ge |B|$ 이다.  <br />
+
+***Theorem (Basis Theorem)*** : $\mathcal{V}$ 는 벡터공간이라 하고, $\mathcal{V}$ 에 대한 모든 기저(basis)는 동일한 크기를 가진다.
+
+- **Proof** : $B_1$ 과 $B_2$ 는 $\mathcal{V}$ 에 대한 두 기저라고 하자. $S=B_1$ 과 $B=B_2$ 를 위의 *Morphing Lemma* 에 적용하면 $|B_1| \ge |B_2|$ 라고 할 수 있다. $S = B_2$ 와 $B=B_1$ 을 적용하면 $|B_2| \ge |B_1|$ 이다. 이 둘의 부등식을 결합하면 $|B_1| = |B_2|$ 를 얻을 수 있다. 
+
+
+***Theorem*** : $\mathcal{V}$ 는 벡터공간이라고 하면, $\mathcal{V}$ 에 대한 생성자들의 집합이 $\mathcal{V}$ 에 대한 생성자들로 구성된 *가장 작은 집합* 이 되는 필요충분 조건은 이 집합이 $\mathcal{V}$ 에 대한 기저인 것이다.
+
+- **Proof** : $T$ 는 $\mathcal{V}$ 에 대한 생성자들의 집합이라고 하자. 그렇다면, 증명해야 하는 것은 
+  - (1) 만약 $T$ 가 $\mathcal{V}$ 에 대한 기저이면 $T$ 는 $\mathcal{V}$ 에 대한 생성자들로 구성된 가장 작은 집합이다.
+  - (2) 만약 $T$ 가 $\mathcal{V}$ 에 대한 기저가 아니면 생성자들로 구성된 $T$ 보다 더 작은 집합이 존재한다.
+
+
+1. $T$ 를 기저라고 하고, $S$ 는 $\mathcal{V}$ 에 대한 생성자들로 구성된 가장 작은 집합이라고 하자. 위의 *Morphing Lemma* 에 의하면, $|T| \le |S|$ 이고, 따라서 $T$ 또한 생성자들의 가장 작은 집합이다.
+2. $T$ 는 기저가 아니라고 해보자. 기저는 *생성자들로 구성된 선형독립* 인 집합이다. 그러므로 $T$ 는 기저가 아니라 했으니, $T$ 는 생성자들로 구성된 선형종속인 집합이다.  [6.5.4의 Lemma](http://nbviewer.jupyter.org/github/ExcelsiorCJH/Study/blob/master/LinearAlgebra/CodingTheMatrix/Chap06%20-%20The%20Basis/Chap06-The_Basis.ipynb#6.5.4-일차독립-및-종속의-성질)에 따르면 $T$ 내에 다른 벡터들의 생성에 속하는 일부 벡터들이 있다. 그러므로 *[Superfluous-Vector Lemma](http://nbviewer.jupyter.org/github/ExcelsiorCJH/Study/blob/master/LinearAlgebra/CodingTheMatrix/Chap06%20-%20The%20Basis/Chap06-The_Basis.ipynb#6.5.1-Superfluous-Vector-보조정리)* 에 의해, $T$ 에서 제거하면 $\mathcal{V}$ 에 대한 생성자들의 집합이 되는 일부 벡터가 존재한다. 따라서 $T$ 는 생성자들로 구성된 가장 작은 집합이 아니다.
+
+
+
+
+*7.1.2 생략*
+
+## 7.2 차원과 랭크 - Dimension and Rank
+
+### 7.2.1 정의 및 예제
+
+***Definition*** : 벡터공간의 *차원* 은 그 벡터공간에 대한 기저의 크기로 정의한다.  벡터공간 $\mathcal{V}$ 의 차원은 $\dim \mathcal{V}$ 로 표현한다. <br />
+
+- ***Example 7.2.2*** : $\mathbb{R}^3$ 에 대한 하나의 기저는 표준 기저 $\{[1,0,0],[0,1,0],[0,0,1]\}$ 이다. 그러므로 $\mathbb{R}^3$ 의 차원은 기저의 크기인 3, 즉 $\dim \mathcal{V}=3$ 이다. 
+- ***Example 7.2.3*** : 좀 더 일반적으로, 임의의 필드 $F$ 와 유한집합 $D$ 에 대해, $F^D$ 에 대한 하나의 기저는 표준기저이고 이것은 $|D|$ 벡터들로 구성되므로, $F^D$의 차원은 $|D|$ 이다.
+
+
+<br />
+
+***Definition*** : 벡터들의 집합 $S$ 의 랭크(rank)를 Span $S$ 의 차원이라 정의한다. $S$ 의 랭크는 rank $S$ 로 나타낸다.
+
+- ***Example 7.2.6*** : 벡터 $[1, 0, 0], [0,2,0],[2,4,0]$ 은 선형종속이다. 그러므로 이 벡터들의 랭크는 $3$보다 작다. 이들 중 임의의 두 벡터는 세 벡터들의 Span에 대한 기저를 형성한다. 따라서 랭크는 $2$ 이다.
+
+
+<br />
+
+***Proposition*** : 벡터들로 구성된 임의의 집합 $S$ 에 대해, rank $S \le |S|$  <br />
+
+***Definition*** : 행렬 $M$에 대해, $M$ 의 *행랭크* 는 그 행렬의 행의 랭크이고, $M$ 의 *열랭크* 는 그 행렬의 열의 랭크이다. 즉, $M$의 행랭크는 Row $M$의 차원이고, $M$ 의 열랭크는 Col $M$의 차원이다.
+
+- ***Example 7.2.10*** : 
+
+$$
+M=\begin{bmatrix} 1 & 0 & 0 \\ 0 & 2 & 0 \\ 2 & 4 & 0 \end{bmatrix}
+$$
+
+- 이 행렬의 행벡터는 $[1,0,0],[0,2,0],[2,4,0]$ 이고, 위의 Example 7.2.6 에서 살펴보았듯이 행벡터의 랭크는 $2$이므로, $M$의 행랭크는 $2$이다.
+
+
+- 행렬 $M$의 열벡터는 $[1,0,2],[0,2,4],[0,0,0]$ 이다. 세 번째 벡터는 영벡터이므로, 열공간을 생성하는 데 필요하지 않다. 나머지 두 벡터는 선형독립이므로 열랭크는 $2$ 이다.
+
+<br />
+
+- ***Example 7.2.11*** :
+
+$$
+M=\begin{bmatrix} 1 & 0 & 0 & 5 \\ 0 & 2 & 0 & 7 \\ 0 & 0 & 3 & 9 \end{bmatrix}
+$$
+
+- 행벡터 $[1,0,0,5],[0,2,0,7],[0,0,3,9]$ 들은 선형독립이므로 $M$의 행랭크는 $3$ 이다.
+- $M$의 열벡터 $[1,0,0],[0,2,0],[0,0,3],[5,7,9]$ 들은 처음 세 열은 선형독립이고 $[5,7,9]$ 은 앞의 세 벡터의 선형결합으로 나타낼 수 있으므로 열랭크는 $3$이다.
+
+<br />
+
+위의 두 예제를 통해 행랭크와 열랭크가 동일하다는 것을 알 수 있다. 이것은 우연히 동일한 것이 아니라, 어떤 행렬에 대해서도 *행랭크* 와 *열랭크* 가 *동일* 하다.
+
+
+
+### 7.2.2 기하학적 구조
+
+좌표계에 대해 기하학적으로 이해 해보자. 기하적 객체의 차원은 객체의 점들에 할당되어야 하는 최소 개수의 좌표이다. 좌표의 수는 기저의 크기이고, 기저의 크기는 주어진 벡터들로 구성된 집합의 랭크이다. 
+
+- Span $\{[1,2,-2]\}$ 은 직선, 즉 1차원 객체이다.  Span $\{[0,0,0]\}$ 은 점, 즉 1차원 구조이다. 첫 번째 벡터공간은 차원이 $1$이고 두 번째 벡터공간은 차원이 $0$이다.
+- Span $\{[1,2],[3,4]\}$ 은 $\mathbb{R}^2$의 모든 것, 즉 2차원 객체를 구성한다. 반면, Span $\{[1,3],[2,6]\}$ 은 직선, 즉 1차원 객체이다. 
+- Span $\{[1,0,0],[0,1,0],[0,0,1]\}$ 은 $\mathbb{R}^3$ 의 모든 것, 즉 3차원 객체이다. 반면에, Span $\{[1,0,0],[0,1,0],[1,1,0]\}$ 은 평면 즉, 2차원 객체이다.
+
+<br />
+
+*7.2.3 생략*
+
+### 7.2.4 $GF(2)$ 상의 벡터공간의 크기
+
+$d$ 는 $GF(2)$ 상의 벡터공간 $\mathcal{V}$ 에 대한 차원이라 하고, $b_1,...,b_d$는 $\mathcal{V}$ 에 대한 기저라고 하면,  [6.7.1의 Unique Representation Lemma](https://render.githubusercontent.com/view/ipynb?commit=0febde811f1f71918c7f654959b434342137044e&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f457863656c73696f72434a482f53747564792f306665626465383131663166373139313863376636353439353962343334333432313337303434652f4c696e656172416c67656272612f436f64696e675468654d61747269782f4368617030362532302d25323054686525323042617369732f4368617030362d5468655f42617369732e6970796e62&nwo=ExcelsiorCJH%2FStudy&path=LinearAlgebra%2FCodingTheMatrix%2FChap06+-+The+Basis%2FChap06-The_Basis.ipynb&repository_id=116745719&repository_type=Repository#6.7.1-%EA%B8%B0%EC%A0%80%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-%ED%91%9C%ED%98%84%EC%9D%98-%EC%9C%A0%EC%9D%BC%EC%84%B1)에 의해, $\mathcal{V}$ 내의 각 벡터는 기저벡터들의 선형결합으로 유일하게 표현된다. 따라서, $\mathcal{V}$ 내 벡터들의 수는 이 기저벡터들의 선형결합들의 수와 동일하다. $d$ 개의 기저벡터가 있으므로, 각 선형결합에는 $d$ 개의 계수가 있다. 각 계수는 $0$ 또는 $1$ 이므로 $2^d$ 개의 다른 선형결합이 있다.
+
+### 7.2.5 $\mathcal{V}$ 에 속하는 벡터들의 임의의 선형독립 집합은 $\mathcal{V}$에 대한 기저를 형성하도록 확장될 수 있다.
+
+***Lemma (Superset-Basis Lemma)*** : 임의의 벡터공간 $\mathcal{V}$와 벡터들로 구성된 임의의 선형독립 집합 $A$ 에 대해, $\mathcal{V}$는 $A$의 모든 원소를 포함하는 기저를 가진다.
+
+- **Proof** : [6.3.1](https://render.githubusercontent.com/view/ipynb?commit=0febde811f1f71918c7f654959b434342137044e&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f457863656c73696f72434a482f53747564792f306665626465383131663166373139313863376636353439353962343334333432313337303434652f4c696e656172416c67656272612f436f64696e675468654d61747269782f4368617030362532302d25323054686525323042617369732f4368617030362d5468655f42617369732e6970796e62&nwo=ExcelsiorCJH%2FStudy&path=LinearAlgebra%2FCodingTheMatrix%2FChap06+-+The+Basis%2FChap06-The_Basis.ipynb&repository_id=116745719&repository_type=Repository#6.3.1-Grow-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98) 에서 보았던 Grow 알고리즘을 사용해보자.
+
+![](./images/proof01.PNG)
+
+<br />
+
+### 7.2.6 차원 원리(Dimension principle)
+
+***Lemma (Dimension Principle)*** : 만약 $\mathcal{V}$가 $\mathcal{W}$의 부분공간(subspace)이면, 다음 성질이 성립한다.
+
+- *Property D1* : $\dim \mathcal{V} \le \dim \mathcal{W}$ 이다.
+- *Property D2* : 만약 $\dim \mathcal{V} = \dim \mathcal{W}$ 이면 $\mathcal{V} = \mathcal{W}$ 이다.
+  - **proof** : $v_1,...,v_k$ 는 $\mathcal{V}$에 대한 기저라고 하면, 7.2.5의 Superset-Basis Lemma에 의해 $v_1,...,v_k$를 포함하는 $\mathcal{W}$ 에 대한 기저 $B$가 있고, $B$의 크기는 적어도 $k$이다. 이 의미는 Property D1을 증명한다. 만약 $B$의 크기가 정확히 $k$이면 $B$는 $v_1,...,v_k$이외의 다른 벡터는 포함하지 않으며, $\mathcal{V}$의 기저는 $\mathcal{W}$의 기저임을 보여주어 Property D2를 증명한다.
+
+<br />
+
+- ***Example 7.2.15*** : $\mathcal{V}=Span \{[1,2],[2,1]\}$ 라고 해보자.  $\mathcal{V}$는 $\mathbb{R}^2$의 부분공간이다. 집합 $\{[1,2],[2,1]\}$ 은 선형독립이고, 따라서 $\dim \mathcal{V}=2$이다. $\dim \mathbb{R}^2=2$이므로 Property D2는 $\mathcal{V}=\mathbb{R}^2$ 임을 보여준다.
+- ***Example 7.2.16*** : 집합$S = \{[-0.6,-2.1,-3.5,-2.2],[-1.3,1.5,-0.9,-0.5],[4.9,-3.7,0.5,-0.3],[2.6,-3.5,-1.2,-2.0],[-1.5,-2.5,-3.5,0.94]\}$에 대해 $|S|=5$ 이므로, $\dim $ Span $S \le 5$이다. $S$ 내의 모든 벡터는 $4$-벡터이므로, Span $S$는 $\mathbb{R}^4$의 부분공간이고, $\dim$ Span $S \le 4$ 이다.
+
+<br />
+
+위의 예제를 통해 다음을 알 수 있다. <br />
+
+***Proposition*** : $D$-벡터들로 구성된 임의의 집합의 랭크는 $|D|$보다 작거나 같다. <br />
+
+*7.2.7 생략*
+
+### 7.2.8 Rank 정리
+
+앞의 예제에서 살표보았듯이 행랭크와 열랭크는 동일하다. 이제 왜 행랭크와 열랭크가 같은지 알아보자. <br />
+
+***Theorem (Rank Theorem)*** : 임의의 어떠한 행렬에 대해, 행랭크와 열랭크는 동일하다. 
+
+- **Proof** : 임의의 행렬 $A$ 에 대해 $A$ 행랭크는 $A$의 열랭크보다 작거나 같다. 동일한 주장을 $A^T$ 에 적용하면 $A^T$의 행랭크는 $A^T$의 열랭크보다 작거나 같다. 즉, $A$의 열랭크는 $A$의 행랭크보다 작거나 같다. 이 두 부등식을 결합하면 $A$의 행랭크는 $A$의 열랭크와 동일하다.  <br />$A$는 행렬이라 하자. 행렬 $A$를 열벡터로 나타내 보자: 
+
+$$
+A=\begin{bmatrix}  &  &  \\ a_{ 1 } & \cdots  & a_{ n } \\  &  &  \end{bmatrix}
+$$
+
+- $r$ 은 $A$ 의 열랭크라 하고 $b_1,…,b_r$ 은 $A$의 열공간에 대한 기저라 하자. <br />$A$ 의 각 열 $a_j$에 대해 $u_j$는 $a_j$의 $b_1,…,b_r$에 대한 좌표 표현이라 하자. 그러면, 행렬-벡터 곱셈의 선형결합 정의에 의해 다음과 같이 표현된다. 
+
+$$
+  \begin{bmatrix}  \\ a_{ j } \\  \end{bmatrix}=\begin{bmatrix}  &  &  \\ b_{ 1 } & \cdots  & b_{ r } \\  &  &  \end{bmatrix}\cdot \begin{bmatrix}  \\ u_{ j } \\  \end{bmatrix}
+$$
+
+- 행렬-행렬 곱셈의 행렬-벡터 정의에 의하면, 다음과 같이 표현되며,
+
+$$
+\begin{bmatrix}  &  &  \\ a_{ 1 } & \cdots  & a_{ n } \\  &  &  \end{bmatrix}=\begin{bmatrix}  &  &  \\ b_{ 1 } & \cdots  & b_{ r } \\  &  &  \end{bmatrix}\cdot \begin{bmatrix}  &  &  \\ u_{ 1 } & \cdots  & u_{ n } \\  &  &  \end{bmatrix}
+$$
+
+- 이것을 다음 처럼 쓸 수 있다. 
+
+$$
+A = BU
+$$
+
+- $B$는 $r$ 개의 열을 가지며 $U$는 $r$개의 행을 가진다. <br />이제, $A$ 와 $B$를 열 대신에 행들로 구성된 행렬로 생각해 보자.
+
+$$
+\begin{bmatrix}  & { \bar { a }  }_{ 1 } &  \\  & \vdots  &  \\  & { \bar { a }  }_{ m } &  \end{bmatrix}=\begin{bmatrix}  & { \bar { b }  }_{ 1 } &  \\  & \vdots  &  \\  & { \bar { b }  }_{ m } &  \end{bmatrix}\cdot U
+$$
+
+- 행렬-행렬 곱셈의 벡터-행렬 정의에 의하면, $A$의 행 $i$인 $\bar{a}_i$는 $B$의 행 $i$인 $\bar{b}_i$를 행렬 $U$에 곱한 것이다.
+
+$$
+\begin{bmatrix}  \\ \bar { a } _{ i } \\  \end{bmatrix}=\begin{bmatrix}  \\ \bar { b } _{ i } \\  \end{bmatrix}\cdot \begin{bmatrix}  &  &  \\  & U &  \\  &  &  \end{bmatrix}
+$$
+
+- 그러므로, 벡터-행렬 곱셈의 선형결합에 의하면 $A$의 모든 행은 $U$의 행들의 선형결합이다. 따라서, $A$의 행공간은 $U$의 행공간의 부분공간이다. $U$의 행공간의 차원은 $r$, 즉 $U$의 행의 수보다 작거나 같다. 따라서, $A$의 행랭크는 $r$ 보다 작거나 같다.  <br />위에서 보았듯이, 임의의 행렬 $A$에 대해 $A$의 행랭크는 $A$의 열랭크보다 작거나 같다. 임의의 행렬 $M$에 대해, 이결과를 $M$에 적용하면 다음이 성립한다.
+
+$$
+rank(Row M)\le rank(ColM)
+$$
+
+- 이 결과를 $M^T$에 적용하면,
+
+$$
+rank(Row M^T) \le rank(ColM^T) \Longleftrightarrow rank(ColM) \le rank(RowM)
+$$
+
+- 따라서, $M$의 행랭크는 $M$의 열랭크와 동일하다.
+
+
+
+***Definition*** : 행렬의 *랭크* 는 그 행렬의 열랭크와 동일하고, 이것은 또한 그 행렬의 행랭크와 같다.
+
+
+
+## 7.3 직합 - Direct Sum 
+
+### 7.3.1 정의
+
+$\mathcal{U}$와 $\mathcal{V}$는 필드 $F$상의 $D$-벡터들로 구성된 두 개의 벡터공간이라고 하자. <br />
+
+***Definition*** : 만약 $\mathcal{U}$ 와 $\mathcal{V}$ 가 오로지 영벡터만을 공유한다면 $\mathcal{U}$ 와 $\mathcal{V}$ 의 *직합* (direct sum)은 아래와 같이 정의하며,
+$$
+\{u + v : u \in \mathcal{U}, v \in \mathcal{V} \}
+$$
+$\mathcal{U} \oplus \mathcal{V}$ 로 나타낸다. 즉, $\mathcal{U} \oplus \mathcal{V}$ 는 $\mathcal{U}$의 벡터와 $\mathcal{V}$의 벡터의 모든 합으로 구성된 집합이다. 
+
+- ***Example 7.3.3*** : $\mathcal{U}=$ Span $\{[1,2,1,2],[3,0,0,4]\}$ 라 하고, $\mathcal{V}$ 는 $\begin{bmatrix} 0 & 1 & -1 & 0 \\ 1 & 0 & 0 & -1 \end{bmatrix}$의 영공간([null space](https://render.githubusercontent.com/view/ipynb?commit=1159b38db70aaa50c569a142d417ce22079e5e6f&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f457863656c73696f72434a482f53747564792f313135396233386462373061616135306335363961313432643431376365323230373965356536662f4c696e656172416c67656272612f436f64696e675468654d61747269782f4368617030352532302d2532305468652532304d61747269782f4368617030352d5468655f4d61747269782e6970796e62&nwo=ExcelsiorCJH%2FStudy&path=LinearAlgebra%2FCodingTheMatrix%2FChap05+-+The+Matrix%2FChap05-The_Matrix.ipynb&repository_id=116745719&repository_type=Repository#5.7-%EC%98%81%EA%B3%B5%EA%B0%84---Null-space)) 이라 하자.  $\mathcal{U}$ 와 $\mathcal{V}$는 아래의 이유로,  $\mathcal{U} \oplus \mathcal{V}$ 가 성립하지 않는다.
+  - 벡터 $[2, -2, -1, 2]$는 $[3,0,0,4]-[1,2,1,2]$ 이므로 $\mathcal{U}$ 내에 있다.
+  - 벡터 $[2,-2,-1,2]$는 아래와 같이 $\mathcal{V}$ 내에 있다.
+
+$$
+\begin{bmatrix} 0 & 1 & -1 & 0 \\ 1 & 0 & 0 & -1 \end{bmatrix}\begin{bmatrix} 2 \\ -2 \\ -1 \\ 2 \end{bmatrix}=\begin{bmatrix} 0 \\ 0 \end{bmatrix}
+$$
+
+- ***Example 7.3.4*** : $\mathcal{U}=$ Span $\{[4,-1,1]\}$, $\mathcal{V}=$ Span $\{[0,1,1]\}$ 라고 하자. $\mathcal{U}$와 $\mathcal{V}$ 각각은 단일 벡터의 Span이고, 따라서 직선을 형성한다. <br />유일한 교점은 원점(0,0,0)이다. 따라서, $\mathcal{U} \oplus \mathcal{V}$는 성립한다. 이 직합은 Span $\{[4,-1,1],[0,1,1\}$ 이며 두개의 직선을 포함하는 평면이다.
+
+<br />
+
+***Proposition*** : 직합(direct sum) $\mathcal{U} \oplus \mathcal{V}$는 벡터공간이다.
+
+
+
+### 7.3.2 직합에 대한 생성자
+
+바로 위의 Example 7.3.4 에서, $\mathcal{U}$에 대한 생성자들의 집합과 $\mathcal{V}$에 대한 생성자들의 집합의 합집합을 구하면 직합 $\mathcal{U} \oplus \mathcal{V}$ 에 대한 하나의 생성자 집합이 얻어진다.  <br />
+
+***Lemma*** : 아래 집합의 합집합은
+
+- $\mathcal{V}$의 생성자들의 집합
+- $\mathcal{W}$의 생성자들의 집합
+
+$\mathcal{V} \oplus \mathcal{W}$에 대한 생성자들의 집합이다.
+
+- **proof** : $\mathcal{V}=$ Span $\{v_1,...,v_m\}$, $\mathcal{W}=$ Span $\{w_1,...,w_n\}$ 라고 하면,
+
+  - $\mathcal{V}$ 내의 모든 벡터는 $\alpha_1 v_1 + \cdots + \alpha_m v_m$ 으로 표현할 수 있다.
+  - $\mathcal{W}$ 내의 모든 벡터는 $\beta_1 w_1 + \cdots + \beta_n w_n$ 으로 표현할 수 있다.
+
+  따라서, $\mathcal{V} \oplus \mathcal{W}$ 내의 모든 벡터는 다음과 같이 나타낼 수 있다.
+
+$$
+\alpha_1 v_1 + \cdots + \alpha_m v_m + \beta_1 w_1 + \cdots + \beta_n w_n
+$$
+
+### 7.3.3 직합에 대한 기저
+
+***Lemma (Direct Sum Basis Lemma)*** : $\mathcal{U}$의 기저와 $\mathcal{V}$의 기저의 합집합은 $\mathcal{U} \oplus \mathcal{V}$ 의 기저이다.
+
+- **Proof** : $\{u_1,...,u_m\}$은 $\mathcal{U}$에 대한 기저라 하고, $\{v_1,...,v_n\}$은 $\mathcal{V}$에 대한 기저라고 하면, 기저는 생성자들의 집합이므로, $\{u_1,...,u_m,v_1,...,v_n\}$은 $\mathcal{U} \oplus \mathcal{V}$에 대한 생성자들의 집합이다. 이제 기저라는 것을 보이기 위해서 *선형독립* 이라는 것을 보여주면 된다. 다음 식을 가정해보자.
+
+$$
+0 = \alpha_1 u_1 + \cdots + \alpha_m u_m + \beta_1 v_1 + \cdots + \beta_n v_n
+$$
+
+- 위의 식은 다음이 성립한다.
+
+$$
+\underbrace { \alpha _{ 1 }u_{ 1 }+\cdots +\alpha _{ m }u_{ m } }_{ in \mathcal{ U } } =\underbrace { (-\beta_1)v_1 + \cdots + (-\beta_n)v_n }_{ in \mathcal{V} }
+$$
+
+- 좌변은 $\mathcal{U}$ 내의 벡터이고, 우변은 $\mathcal{V}$ 내의 벡터이다. $\mathcal{U} \oplus \mathcal{V}$ 의 정의에 의하면, $\mathcal{U}$ 와 $\mathcal{V}$ 둘 모두에 있는 유일한 벡터는 영벡터이다. 이것은 다음을 보여준다.
+
+$$
+0 = \alpha_1 u_1 + \cdots + \alpha_m u_m
+$$
+
+$$
+0 = (-\beta_1)v_1 + \cdots + (-\beta_n)v_n
+$$
+
+- 위의 식들은 선형독립에 의해 자명하다(trivial).
+
+<br />
+
+위의 Lemma(Direct Sum Basis Lemma) 에 의해 다음과 같은 Corollary가 가능하다.
+
+***Corollary (Direct-Sum Dimension Corollary)*** : $\dim \mathcal{U} + \dim \mathcal{V} = \dim \mathcal{U} \oplus \mathcal{V}$
+
+위의 Corollary(따름정리)는 Kernel-Image Theorem을 증명하는데 사용할 것 이다.
+
+
+
+### 7.3.4 벡터의 고유분해 - Unique Decomposition
+
+***Corollary (Direct-Sum Unique Representation Collorary)*** : $\mathcal{U} \oplus \mathcal{V}$ 내의 임의의 벡터는 $u + v$ 로 유일하게 표현된다. (단,  $u \in \mathcal{U}, v \in \mathcal{V}$)
+
+- **Proof** : $\{u_1,...,u_m\}$은 $\mathcal{U}$에 대한 기저라 하고, $\{v_1,...,v_n\}$은 $\mathcal{V}$에 대한 기저라고 하면,  $\{u_1,...,u_m,v_1,...,v_n\}$은 $\mathcal{U} \oplus \mathcal{V}$에 대한 기저이다. <br />$w$는 $\mathcal{U} \oplus \mathcal{V}$ 내의 임의의 벡터라고 하자. $w$는 다음과 같이 표현된다.
+
+$$
+w=\underbrace { \alpha _{ 1 }u_{ 1 }+\cdots +\alpha _{ m }u_{ m } }_{ in \mathcal{ U } } +\underbrace { \beta_1 v_1 + \cdots + \beta_n v_n }_{ in \mathcal{V} }
+$$
+
+- $w$를 $w = u+v$로서 나타내는 방법을 고려해보자. $u$는 $\mathcal{U}$ 내에 있고, $v$는 $\mathcal{V}$ 내에 있다. $u$ 를 $\mathcal{U}$ 의 기저에 대해 나타내고, $v$를 $\mathcal{V}$의 기저에 대해 표현하면 다음과 같다.
+
+$$
+w = \gamma _{ 1 }u_{ 1 }+\cdots +\gamma _{ m }u_{ m } +\delta_1 v_1 + \cdots + \delta_n v_n
+$$
+
+- [Unique-Representation Lemma](https://render.githubusercontent.com/view/ipynb?commit=1159b38db70aaa50c569a142d417ce22079e5e6f&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f457863656c73696f72434a482f53747564792f313135396233386462373061616135306335363961313432643431376365323230373965356536662f4c696e656172416c67656272612f436f64696e675468654d61747269782f4368617030362532302d25323054686525323042617369732f4368617030362d5468655f42617369732e6970796e62&nwo=ExcelsiorCJH%2FStudy&path=LinearAlgebra%2FCodingTheMatrix%2FChap06+-+The+Basis%2FChap06-The_Basis.ipynb&repository_id=116745719&repository_type=Repository#6.7.1-%EA%B8%B0%EC%A0%80%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-%ED%91%9C%ED%98%84%EC%9D%98-%EC%9C%A0%EC%9D%BC%EC%84%B1) 에 의해 $\gamma_1 = \alpha_1,...,\gamma_m = \alpha_m, \delta_1=\beta_1,...,\delta_n=\beta_n$ 이므로,  $w$는 $\mathcal{U}$ 내의 벡터와 $\mathcal{V}$내의 벡터의 합으로 유일하게 명시된다.
+
+
+
+
+### 7.3.5 여부분공간 - Complementary subspace
+
+***Definition*** : 만약 $\mathcal{U} \oplus \mathcal{V}=\mathcal{W}$ 이면, $\mathcal{U}$ 와 $\mathcal{V}$ 는 $\mathcal{W}$의 *여부분공간(complementary subspace, complementary: 상호보완적인)* 이라 한다.
+
+<br />
+
+***Proposition*** : 임의의 벡터공간 $\mathcal{W}$ 와 $\mathcal{W}$의 임의의 부분공간 $\mathcal{U}$에 대해, $\mathcal{W} = \mathcal{U} \oplus \mathcal{V}$을 만족하는 $\mathcal{W}$ 의 부분공간 $\mathcal{V}$ 가 있다.
+
+- **Proof** : $u_1,...,u_k$ 는 $\mathcal{U}$에 대한 기저라고 하자. 7.2.5의 Superset-Basis Lemma에 의하면, $u_1,...,u_k$를 포함하는 $\mathcal{W}$에 대한 기저가 있다. 이 기저를 $\{u_1,...,u_k,v_1,...v_r\}$로 나타내고, $\mathcal{V}=$ Span $\{v_1,...,v_r\}$ 이라고 하자. $\mathcal{W}$ 내의 임의의 벡터 $w$는 이 기저에 대해 다음과 같이 좌표표현으로 나타낼 수 있다.
+
+$$
+w=\underbrace { \alpha _{ 1 }u_{ 1 }+\cdots +\alpha _{ k }u_{ k } }_{ in \mathcal{ U } } +\underbrace { \beta_1 v_1 + \cdots + \beta_r v_r }_{ in \mathcal{V} }
+$$
+
+- 따라서, 만약 직합(direct-sum)이 옳다는 것을 보여 줄 수 있으면, 즉 $\mathcal{U}$ 와 $\mathcal{V}$ 둘 모두에 속하는 유일한 벡터는 영벡터라는 것을 보여줄 수 있으면 $\mathcal{W} = \mathcal{U} \oplus \mathcal{V}$ 임을 보여주는 것이다.
+- 어떤 벡터 $v$가 $\mathcal{U}$와 $\mathcal{V}$ 둘 모두에 속한다고 하면 아래와 같이 쓸 수 있다.
+
+$$
+\alpha_1 u_1 + \cdots \alpha_k u_k = \beta_1 v_1 + \cdots + \beta_r v_r
+$$
+
+$$
+0 = \alpha_1 u_1 + \cdots + \alpha_k u_k - \beta_1 v_1 - \cdots - \beta_r v_r
+$$
+
+- 이것이 의미하는 것은 $\alpha_1 = \cdots = \alpha_k = \beta_1 = \cdots = \beta_r = 0$ 이며, $v$는 영벡터임을 보여준다.
+
+<br />
+
+## 7.4 차원과 선형함수
+
+[선형함수](https://render.githubusercontent.com/view/ipynb?commit=d18f07646e9a46f3f32f9f111813fab6d032baad&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f457863656c73696f72434a482f53747564792f643138663037363436653961343666336633326639663131313831336661623664303332626161642f4c696e656172416c67656272612f436f64696e675468654d61747269782f4368617030352532302d2532305468652532304d61747269782f4368617030352d5468655f4d61747269782e6970796e62&nwo=ExcelsiorCJH%2FStudy&path=LinearAlgebra%2FCodingTheMatrix%2FChap05+-+The+Matrix%2FChap05-The_Matrix.ipynb&repository_id=116745719&repository_type=Repository#5.10-%EC%84%A0%ED%98%95%ED%95%A8%EC%88%98---Linear-functions)가 가역적인지 아닌지 판단할 수 있는 기준에 대해 알아 보도록 하자. 이것은 또한 행렬이 가역적인지 판단한느 기준을 제공해 준다. 또한 이러한 기준은 중요한 정리인 *Kernel-Image* 정리를 기반으로 한다.
+
+### 7.4.1 선형함수의 가역성
+
+선형함수 $f: \mathcal{V} \rightarrow \mathcal{W}$ 가 가역적인지 어떻게 판단할 수 있을까? 알아야 하는 것은 5장에서 배웠던 $f$ 가 [단사(one-to-one)](https://render.githubusercontent.com/view/ipynb?commit=d18f07646e9a46f3f32f9f111813fab6d032baad&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f457863656c73696f72434a482f53747564792f643138663037363436653961343666336633326639663131313831336661623664303332626161642f4c696e656172416c67656272612f436f64696e675468654d61747269782f4368617030352532302d2532305468652532304d61747269782f4368617030352d5468655f4d61747269782e6970796e62&nwo=ExcelsiorCJH%2FStudy&path=LinearAlgebra%2FCodingTheMatrix%2FChap05+-+The+Matrix%2FChap05-The_Matrix.ipynb&repository_id=116745719&repository_type=Repository#5.10.5-%EB%8B%A8%EC%82%AC%ED%95%A8%EC%88%98%EC%9D%B8-%EC%84%A0%ED%98%95%ED%95%A8%EC%88%98)인지 [전사(onto)](https://render.githubusercontent.com/view/ipynb?commit=d18f07646e9a46f3f32f9f111813fab6d032baad&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f457863656c73696f72434a482f53747564792f643138663037363436653961343666336633326639663131313831336661623664303332626161642f4c696e656172416c67656272612f436f64696e675468654d61747269782f4368617030352532302d2532305468652532304d61747269782f4368617030352d5468655f4d61747269782e6970796e62&nwo=ExcelsiorCJH%2FStudy&path=LinearAlgebra%2FCodingTheMatrix%2FChap05+-+The+Matrix%2FChap05-The_Matrix.ipynb&repository_id=116745719&repository_type=Repository#5.10.6-%EC%A0%84%EC%82%AC%ED%95%A8%EC%88%98%EC%9D%B8-%EC%84%A0%ED%98%95%ED%95%A8%EC%88%98)인지의 여부이다. <br />
+
+[One-to-One Lemma](https://render.githubusercontent.com/view/ipynb?commit=d18f07646e9a46f3f32f9f111813fab6d032baad&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f457863656c73696f72434a482f53747564792f643138663037363436653961343666336633326639663131313831336661623664303332626161642f4c696e656172416c67656272612f436f64696e675468654d61747269782f4368617030352532302d2532305468652532304d61747269782f4368617030352d5468655f4d61747269782e6970796e62&nwo=ExcelsiorCJH%2FStudy&path=LinearAlgebra%2FCodingTheMatrix%2FChap05+-+The+Matrix%2FChap05-The_Matrix.ipynb&repository_id=116745719&repository_type=Repository#5.10.5-%EB%8B%A8%EC%82%AC%ED%95%A8%EC%88%98%EC%9D%B8-%EC%84%A0%ED%98%95%ED%95%A8%EC%88%98)에 의하면, $f$가 단사함수일 필요충분조건은 그 커널(kernel)은 자명한 경우 즉, $\ker f = \{0\}$ 인 경우이다.  <br/>
+
+[5.10.6](https://render.githubusercontent.com/view/ipynb?commit=d18f07646e9a46f3f32f9f111813fab6d032baad&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f457863656c73696f72434a482f53747564792f643138663037363436653961343666336633326639663131313831336661623664303332626161642f4c696e656172416c67656272612f436f64696e675468654d61747269782f4368617030352532302d2532305468652532304d61747269782f4368617030352d5468655f4d61747269782e6970796e62&nwo=ExcelsiorCJH%2FStudy&path=LinearAlgebra%2FCodingTheMatrix%2FChap05+-+The+Matrix%2FChap05-The_Matrix.ipynb&repository_id=116745719&repository_type=Repository#5.10.6-%EC%A0%84%EC%82%AC%ED%95%A8%EC%88%98%EC%9D%B8-%EC%84%A0%ED%98%95%ED%95%A8%EC%88%98)에서 $f$ 의 상은 Im $f = \{f(v) : v \in \mathcal{V}\}$ 이다. 따라서, $f$가 전사함수일 필요충분조건은 Im $f=\mathcal{W}$ 인 경우이다. <br />
+
+Im $f$ 가 $\mathcal{W}$의 부분공간임을 보여줄 수 있다. 7.2.6의 Dimension principle Lemma에 의하면 $f$ 가 전사함수일 필요충분 조건은 $\dim$ Im $f = \dim \mathcal{W}$ 이다.
+
+- 선형함수 $f : \mathcal{U} \rightarrow \mathcal{W}$ 가 $\dim \ker f=0$ 이고 $\dim $ Im $f = \dim \mathcal{W}$ 이면 가역적(Invertible)이다.
+
+
+
+### 7.4.2 가장 큰 가역적인 서브함수(Subfunction)
+
+$f : \mathcal{V} \rightarrow \mathcal{W}$는 아래의 그림과 같이 비가역적 선형함수라고 하자.
+
+![](./images/sub01.PNG)
+
+그렇다면 여기서 가역적인 서브함수 $f^* : \mathcal{V}^* \rightarrow \mathcal{W}^*$를 정의해보자. 여기서 *서브함수* 란 $\mathcal{V}^*$는 $\mathcal{V}$의 부분집합이고 $\mathcal{W}^*$는 $\mathcal{W}$의 부분집합이며 $f^*$는 $\mathcal{V}^*$의 모든 원소에 대해 $f$와 동일하다는 것을 의미한다.  <br />
+
+먼저, $f^*$가 전사함수가 되도록 $\mathcal{W}^*$를 아래의 그림처럼 선택한다. 그리고, $w_1,...,w_r$은 $\mathcal{W}^*$에 대한 기저라고 하자.
+
+![](./images/sub02.PNG)
+
+ 그런다음, $v_1,...,v_r$은 $w_1,...,w_r$의 원상(pre-image)라고 하자. 즉, $f(v_1)=w_1,...,f(v_r)=w_r$을 만족하는 $\mathcal{V}$내의 임의의 벡터들 $v_1,...v_r$을 아래의 그림처럼 선택하고, $\mathcal{V}^*$ 는 Span $\{v_1,...,v_r\}$라고 정의하자.
+
+![](./images/sub03.PNG)
+
+마지막으로 $f^* : \mathcal{V}^* \rightarrow \mathcal{W}^*$는 $f^*(x)=f(x)$ 라고 정의한다. <br />
+
+***Lemma*** : $f^*$ 는 전사함수이다.
+
+- **proof** : $w$는 공역 $\mathcal{W}^*$ 내의 임의의 벡터라고 하고, 다음을 만족하는 스칼라 $\alpha_1,...,\alpha_r$이 있다.
+
+$$
+w = \alpha_1 w_1 + \cdots + \alpha_r w_r
+$$
+
+- $f$는 선형이므로,
+
+$$
+f(\alpha_1 v_1 + \cdots + \alpha_r v_r) \\ = \alpha_1 f(v_1) + \cdots + \alpha_r f(v_r) \\ = \alpha_1 w_1 + \cdots + \alpha_r w_r
+$$
+
+- 따라서, $w$는 $\alpha_1 v_1 + \cdots + \alpha_r v_r \in \mathcal{V}^*$ 의 상이다.
+
+<br />
+
+***Lemma*** : $f^*$는 단사함수이다.
+
+- **Proof** : One-to-One Lemma에 의해, $f^*$의 커널(kernel)이 자명한, 즉 $\ker f^* = \{0\}$임을 보여준면 된다. $v^*$는 $\mathcal{V}^*$ 내에 있고  $f(v^*)=0$ 라고 해보자. $\mathcal{V}^* = $ Span $\{v_1, ...,v_r\}$ 이므로, 다음을 만족하는 스칼라 $\alpha_1,...,\alpha_r$ 이 존재한다.
+
+$$
+v^* = \alpha_1 v_1 + \cdots + \alpha_r v_r
+$$
+
+- 양변에 $f$ 를 적용하면 다음과 같다.
+
+$$
+0 = f( \alpha_1 v_1 + \cdots + \alpha_r v_r) \\ =  \alpha_1 w_1 + \cdots + \alpha_r w_r
+$$
+
+- $w_1,...,w_r$은 선형독립이므로, $\alpha_1 = \cdots = \alpha_r=0$ 이고, $v^* = 0$ 이다.
+
+<br />
+
+***Lemma*** : $v_1,...,v_r$은 $\mathcal{V}^*$ 에 대한 기저를 형성한다.
+
+- **Proof** : $\mathcal{V}^*$ 는 $v_1,...,v_r$의 생성이라고 정의되었기 때문에, 이 벡터들이 선형독립이라는 것만 보여주면 된다. 아래의 식을 가정해 보자.
+
+$$
+0 = \alpha_1 v_1 + \cdots + \alpha_r v_r
+$$
+
+- 양변에 $f$ 를 적용하면 다음을 얻는다.
+
+$$
+0 = f( \alpha_1 v_1 + \cdots + \alpha_r v_r) \\ =  \alpha_1 w_1 + \cdots + \alpha_r w_r
+$$
+
+- $w_1,...,w_r$은 선형독립이므로, $\alpha_1 = \cdots = \alpha_r=0$ 이다.
+
+<br />
+
+***Example 7.4.4*** : $A=\begin{bmatrix} 1 & 2 & 1 \\ 2 & 1 & 1 \\ 1 & 2 & 1 \end{bmatrix}​$ 이라 하고, $f : \mathbb{R}^3 \rightarrow \mathbb{R}^3​$ 은 $f(x) = Ax​$라고 정의하자. $\mathcal{W}^*=​$ $\Ima​$ $f=​$ Col $A=​$ Span $\{[1,2,1],[2,1,2],[1,1,1]\}​$ 이라고 정의하자. $\mathcal{W}^*​$에 대한 하나의 기저는 $w_1 = [0,1,0]​$, $w_2=[1,0,1]​$ 이다. <br />
+
+이제, $w_1$과 $w_2$에 대한 원상(pre-image)를 선택하자. $Av_1 = w_1, Av_2 = w_2$에 대해 계산된 원상은 아래와 같다.
+$$
+v_1=[\frac{1}{2}, - \frac{1}{2}, \frac{1}{2}]
+$$
+
+$$
+v_2=[- \frac{1}{2}, \frac{1}{2}, \frac{1}{2}]
+$$
+
+$\mathcal{V}^* =$ Span $\{v_1, v_2\}$ 라고 하면, $f^*(x) = f(x)$에 의해 정의된 함수 $f^* : \mathcal{V}^* \rightarrow $ $\Ima f$은 전단사함수이다.
+
+
+
+### 7.4.3 Kernel-Image 정리
+
+함수 $f$에서 가역 서브함수 $f^* : \mathcal{V}^* \rightarrow \mathcal{W}^*$ 를 구성하는 것은 서브함수의 정의역을 원래 선형함수 $f$의 커널에 연관시킨다.<br />
+
+***Lemma*** : $\mathcal{V} = \ker f \oplus \mathcal{V}^*$
+
+- **Proof** : 다음 두 가지 항목을 증명해야 한다.
+  - $\ker f$와 $\mathcal{V}^*$는 영벡터만을 공유한다.
+  - $\mathcal{V}$ 내의 모든 벡터는 $\ker f$내의 벡터와 $\mathcal{V}^*$내의 벡터의 합이다.
+- 이미 위의 7.4.2 에서 $f^*$의 커널은 자명하다는 것을 보여주었다. 따라서, $\mathcal{V}^*$에 속하는 $\ker f$의 유일한 벡터는 영(0)이고, 이를 통해 '$\ker f$와 $\mathcal{V}^*$*는 영벡터만을 공유한다.*' 는 증명이 된다.
+- $v$는 $\mathcal{V}$ 내의 임의의 벡터이고, $w=f(v)$라고 하자. $f^*$는 전사함수이므로, 그 정의역인 $\mathcal{V}^*$는 $f(v^*)=w$를 만족하는 벡터 $v^*$를 포함한다. 그러므로, $f(v)=f(v^*)$이고, 따라서 $f(v)-f(v^*)=0, f(v-v^*)=0$ 이 성립한다. 따라서, $u=v-v^*$는 $\ker f$ 내에 있고, $v=u+v^*$이다. 
+
+<br />
+
+***Example 7.4.6*** : Example 7.4.4에서 $A=\begin{bmatrix} 1 & 2 & 1 \\ 2 & 1 & 1 \\ 1 & 2 & 1 \end{bmatrix}$이라 하고, $f : \mathbb{R}^3 \rightarrow \mathbb{R}^3$ 은 $f(x) = Ax$라고 정의하자. $\mathcal{V}^*$에 대한 기저는 위의 Example 7.4.4에서 $v_1=[\frac{1}{2}, - \frac{1}{2}, \frac{1}{2}] , v_2=[- \frac{1}{2}, \frac{1}{2}, \frac{1}{2}]$ 로 구성된다. $f$의 커널은 Span $\{[1,1,-3]\}$ 이다. 그러므로 $\mathcal{V}=$ (Span $\{[1,1,-3]\}$) $\oplus$ (Span $\{v_1, v_2\}$) 이다. 
+
+<br />
+
+***Theorem (Kernel-Image Theorem)*** : 임의의 선형함수 $f: \mathcal{V} \rightarrow \mathcal{W}$에 대해, 
+$$
+\dim \ker f + \dim \Ima f = \dim \mathcal{V}
+$$
+
+- **Proof** : $\mathcal{V} = \ker f \oplus \mathcal{V}^*​$임을 보여준다. 7.3.3의 Direct-Sum Dmension Corollary에 의하면,
+
+$$
+\dim \mathcal{V} = \dim \ker f + \dim \mathcal{V}^*
+$$
+
+- $v_1,...,v_r$은 $\mathcal{V}^*$에 대한 기저를 형성하고, 이러한 벡터들의 수 $r$은 $\Ima f$ 에대한 기저의 크기와 동일하다.
+
+$$
+\dim \mathcal{V}^* = r = \dim \Ima f
+$$
+
+### 7.4.4 선형함수의 가역성 - 다시보기
+
+위의 Kernel-Image Theorem을 이용해 선형함수의 가역성을 판단하는 데 좀 더 나은 기준을 제시할 수 있다. <br />
+
+***Theorem (Linear-Function Invertibility Theorem)*** : $f : \mathcal{V} \rightarrow \mathcal{W}$는 선형함수라고 하자. 그러면, $f$가 가역적일 필요충분조건은 $\dim \ker f = 0$ 이고, $\dim \mathcal{V}= \dim \mathcal{W}$ 이다.
+
+<br />
+
+### 7.4.5 Rank-Nullity 정리
+
+$R \times C$ 행렬 $A$에 대해, $f : F^C \rightarrow F^R$을 $f(x)=Ax$ 라고 하자. 위의 Kernel-Image Theorem에 의해, $\dim F^C = \dim =ker f + \dim \Ima f$이다. $f$의 커널은 $A$의 영공간(Null Space)이고, 행렬-벡터 곱셈의 선형결합 정의에 의해 $f$의 상은 $A$의 열공간이고, 따라서 다음을 얻는다.  
+$$
+\dim F^C = \dim Null (A)+\dim Col(A)
+$$
+$F^C$ 의 차원은 $|C|$, 즉 $A$의 열의 개수이고, $A$의 열공간의 차원은 $A$의 랭크라고 한다. 행렬 $A$의 영공간의 차원은 $A$의 ***Nullity*** 라고한다.  <br />
+
+***Theorem (Rank-Nullity Theorem)*** : 임의의 $n$-열 행렬 $A$ 에 대해,
+$$
+rank(A) + nullity(A) = n
+$$
+*7.4.6 생략*
+
+### 7.4.7 행렬의 가역성
+
+***Corollary*** : $A$는 $R \times C$ 행렬이라고 하면, $A$가 가역적이 될 필요충분조건은 $|R|=|C|$이고, $A$의 열들은 선형독립일 때다.
+
+- **Proof** : $F$는 필드라고 하고, $f: F^C \rightarrow F^R$은 $f(x)=Ax$라 하면, $A$가 가역행렬이 될 필요충분조건은 $f$가 가역함수인 것이다. 7.4.4의 Theorem에 의하면, $f$가 가역적일 필요충분조건은 $\dim \ker f =0$이고 $\dim F^C = \dim F^R$이다. 즉, $\dim Null(A)=0$이고, $|C|=|R|$이다. 또한, $\dim Null (A)=0$일 필요충분조건은 행렬의 열벡터들이 선형결합인 것이다.
+
+<br />
+
+***Corollary*** : 가역행렬의 전치행렬은 가역적이다.
+
+- **Proof** : $A$는 가역행렬이라고 하면, $A$는 정방행렬이고 그 열들은 선형독립이다. $n$은 열들의 개수라고 하고, 행렬을 다음과 같이 표현하자.
+
+$$
+A=\left[ { \begin{matrix}  \\ v_{ 1 } \\  \end{matrix} }|{ \begin{matrix}  \\ \cdots  \\  \end{matrix} }|{ \begin{matrix}  \\ v_{ n } \\  \end{matrix} } \right] =\left[ \begin{matrix} \underline { \begin{matrix}  & a_{ 1 } &  \end{matrix} }  \\ \underline { \begin{matrix}  & \vdots  &  \end{matrix} }  \\ \begin{matrix}  & a_n &  \end{matrix} \end{matrix} \right]
+$$
+
+$$
+A^T=\left[ { \begin{matrix}  \\ a_{ 1 } \\  \end{matrix} }|{ \begin{matrix}  \\ \cdots  \\  \end{matrix} }|{ \begin{matrix}  \\ a_{ n } \\  \end{matrix} } \right] 
+$$
+
+- $A$의 열들은 선형독립이므로, $A$의 랭크는 $n$이다. $A$는 정방행렬이므로, $n$ 개의 행을 가진다. $A$의 행랭크는 $n$이고, 그 행들은 선형독립이다. 전치행렬 또한 마찬가지다.
+
+<br />
+
+***Corollary*** : $A$와 $B$는 정방행렬이고 $BA$는 단위행렬이라고 하면, $A$와 $B$는 서로의 역행렬이다.
+
+- **Proof** : $A$는 $R \times C$ 행렬이라 하고, $B$는 $C \times R$행렬이라고 하면, $BA$는 $C \times C$ 단위행렬 $I_C$이다. $A$의 열들은 선형독립이라는 것을 보여주자. $u$는 $Au=0$을 만족하는 임의의 벡터라고 하면, $B(Au)=B0=0$ 이고, $(BA)u=I_Cu=u$ 이므로, $u=0$이다. $A$ 는 가역적이므로 $A$의 역행렬을 $A^{-1}$로 나타내고 $AA^{-1}$은 $R \times R$ 단위행렬 $I_R$이다.
+
+$$
+BA = I_C \\ BAA^{-1} = I_R A^{-1} \\ BAA^{-1} = A^{-1} \\ BI_R=A^{-1} \\ B = A^{-1}
+$$
+
+***Example 7.4.15*** : $\begin{bmatrix} 1 & 1 & 2 \\ 2 & 1 & 3 \\ 3 & 1 & 4 \end{bmatrix}$은 정방행렬이지만 열벡터들이 선형독립이 아닌 선형종속이므로 이 행렬은 가역적이지 않다.
+
+<br />
+
+### 7.4.8 행렬의 가역성과 기저 변경
+
+동일한 공간의 기저 $a_1,...,a_n$과 $b_1,...,b_m$에 대해, $m \times n$ 행렬 $C$가 존재하며, 이 행렬 $C$를 곱하면 $a_1,...,a_n$에 대한 어떤 벡터의 좌표 표현이 동일한 벡터의 $b_1,...,b_m$에 대한 좌표표현으로 변환된다. 행렬 $C$는 가역적이다. 두 기저는 동일한 크기를 가져야 하며, 따라서 $C$는 정방행렬이다. 
+
+<br />
+
+## 7.5 소멸자 - Annihilator
+
+[4.3.3](https://render.githubusercontent.com/view/ipynb?commit=d18f07646e9a46f3f32f9f111813fab6d032baad&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f457863656c73696f72434a482f53747564792f643138663037363436653961343666336633326639663131313831336661623664303332626161642f4c696e656172416c67656272612f436f64696e675468654d61747269782f4368617030342532302d253230546865253230566563746f7225323053706163652f4368617030342d5468655f566563746f725f53706163652e6970796e62&nwo=ExcelsiorCJH%2FStudy&path=LinearAlgebra%2FCodingTheMatrix%2FChap04+-+The+Vector+Space%2FChap04-The_Vector_Space.ipynb&repository_id=116745719&repository_type=Repository#4.3.3-%EC%9B%90%EC%A0%90%EC%9D%84-%ED%8F%AC%ED%95%A8%ED%95%98%EB%8A%94-flat%EC%9D%98-%EB%91%90-%EA%B0%80%EC%A7%80-%ED%91%9C%ED%98%84)에서 보았듯이, 벡터공간은 아래와 같은 두 개의 표현으로 나타낼 수 있다.
+
+- *벡터들로 구성된 유한집합의 생성(Span)*
+- *동차 선형시스템의 해집합*
+
+[4.5.5](https://render.githubusercontent.com/view/ipynb?commit=d18f07646e9a46f3f32f9f111813fab6d032baad&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f457863656c73696f72434a482f53747564792f643138663037363436653961343666336633326639663131313831336661623664303332626161642f4c696e656172416c67656272612f436f64696e675468654d61747269782f4368617030342532302d253230546865253230566563746f7225323053706163652f4368617030342d5468655f566563746f725f53706163652e6970796e62&nwo=ExcelsiorCJH%2FStudy&path=LinearAlgebra%2FCodingTheMatrix%2FChap04+-+The+Vector+Space%2FChap04-The_Vector_Space.ipynb&repository_id=116745719&repository_type=Repository#4.5.5-%EB%91%90-%EA%B0%80%EC%A7%80-%ED%91%9C%ED%98%84%EB%B2%95---%EB%8B%A4%EC%8B%9C-%EB%B3%B4%EA%B8%B0)에서 보았듯이, 아핀공간도 아래와 같이 표현할 수 있다.
+
+- *벡터들로 구성된 유한집합의 아핀 hull*
+- *선형시스템의 해집합*
+
+
+
+### 7.5.1 표현 변환
+
+아래의 네 개의 변환 문제를 살펴보자.
+
+- Conversion Problem 1: 주어진 동차선형시스템 $Ax=0$에 대해, 벡터 $w_1,...,w_k$를 찾아보자. 이 벡터들의 생성(Span)은 이 시스템의 해집합이다.
+- Conversion Problem 2: 주어진 벡터들 $w_1,...,w_k$에 대해, 동차 선형시스템 $Ax=0$을 찾아보자. 이 시스템의 해집합은 Span $\{w_1,...,w_k\}$와 동일하다.
+- Conversion Problem 3 : 주어진 선형시스템 $Ax=b$에 대해, 벡터 $u_1,...u_k$를 찾아보자. 이 벡터들의 아핀 hull은 그 시스템의 해집합이다.
+- Conversion Problem 4 : 주어진 벡터들 $w_1,...,w_k$에 대해, 선형시스템 $Ax=0$을 찾아보자. 이 시스템의 해집합은 $\{w_1,...,w_k\}$의 아핀 hull과 동일하다.
+
+
+### 7.5.2 벡터공간의 소멸자
+
