@@ -346,5 +346,94 @@ $$
 
 
 
+
 ### 12.3.3 특이값 분해
+
+12.3.2의 Lemma에 따르면 $A$의 각 행 $a_i$ 는 오른쪽 특이벡터들의 선형결합이다.
+$$
+a_i = \sigma_{i1} v_1 + \cdots + \sigma_{ir}v_r
+$$
+$v_1,…,v_r$ 은 정규직교하므로, $j$ 번째 항 $\sigma_{ij}v_{j}$는 $j$ 번째 오른쪽 특이벡터 $v_j$에 따른 $a_i$의 투영이고 그 계수 $\sigma_{ij}$ 는 $a_i$ 와 $v_j$ 의 내적이다.
+$$
+a_i = \left< a_i, v_1 \right> v_1 + \cdots + \left< a_i, v_r \right> v_r
+$$
+벡터-행렬 곱셈의 도트곱 정의를 사용하여 다음과 같이 표현할 수 있다.
+$$
+a_i = \begin{bmatrix} \left< a_{ i },v_{ 1 } \right>  & \cdots  & \left< a_{ i },v_{ r } \right>  \end{bmatrix}\begin{bmatrix} - & v_{ 1 }^{ T } & - \\  & \vdots  &  \\ - & v_{ r }^{ T } & - \end{bmatrix}
+$$
+위의 식을 이용하여 행렬 $A$ 를 행렬-행렬 곱으로 표현할 수 있다.
+$$
+\begin{bmatrix} - & a_{ 1 }^{ T } & - \\ - & a_{ 2 }^{ T } & - \\  & \vdots  &  \\ - & a_{ m }^{ T } & - \end{bmatrix}=\begin{bmatrix} \left< a_{ 1 },v_{ 1 } \right>  & \cdots  & \left< a_{ 1 },v_{ r } \right>  \\ \left< a_{ 2 },v_{ 1 } \right>  & \cdots  & \left< a_{ 2 },v_{ r } \right>  \\  & \vdots  &  \\ \left< a_{ m },v_{ 1 } \right>  & \cdots  & \left< a_{ m },v_{ r } \right>  \end{bmatrix}\begin{bmatrix} - & v_{ 1 }^{ T } & - \\  & \vdots  &  \\ - & v_{ r }^{ T } & - \end{bmatrix}
+$$
+위의 방정식을 더 간단하게 나타낼 수 있다. 우변의 첫 번째 행렬의 $j$ 번째 열은 다음과 같다.
+$$
+\begin{bmatrix} \left< a_1, v_j \right>  \\ \left< a_2, v_j \right>  \\ \vdots  \\ \left< a_m, v_j \right>  \end{bmatrix}
+$$
+이것은 선형결합의 도트곱 정의에 의해 $Av_j$ 이다.
+
+
+
+***Definition*** : $\sigma_j u_j = Av_j$ 를 만족하는 벡터 $u_1, u_2, …, u_r$ 은 $A$ 의 *왼쪽 특이벡터(left singular vectors)* 이다.
+
+***Proposition*** : 왼쪽 특이벡터들은 정규직교이다.
+
+
+
+왼쪽 특이벡터의 정의를 사용하여 $\sigma_j u_j$ 를 $Av_j$ 에 대입하면 다음과 같다.
+$$
+\begin{bmatrix}  &  &  \\  &  &  \\  & A &  \\  &  &  \\  &  &  \end{bmatrix}=\begin{bmatrix} | &  & | \\ | &  & | \\ \sigma _{ 1 }u_{ 1 } & \cdots  & \sigma _{ r }u_{ r } \\ | &  & | \\ | &  & | \end{bmatrix}\begin{bmatrix} - & v_{ 1 }^{ T } & - \\  & \vdots  &  \\ - & v_{ r }^{ T } & - \end{bmatrix}
+$$
+마지막으로, $\sigma_1, …, \sigma_r$ 을 대각행렬(diagonal matrix)로 분리하면 다음 방정식을 얻는다.
+$$
+\begin{bmatrix}  &  &  \\  &  &  \\  & A &  \\  &  &  \\  &  &  \end{bmatrix}=\begin{bmatrix} | &  & | \\ | &  & | \\ u_{ 1 } & \cdots  & u_{ r } \\ | &  & | \\ | &  & | \end{bmatrix}\begin{bmatrix} \sigma _{ 1 } &  &  \\  & \ddots  &  \\  &  & \sigma_r \end{bmatrix}\begin{bmatrix} - & v_{ 1 }^{ T } & - \\  & \vdots  &  \\ - & v_{ r }^{ T } & - \end{bmatrix}
+$$
+***Definition*** : 행렬 $A$ 의 *특이값 분해* $A$ 의 인수분해 $A = U\Sigma V^T$ 이다. 여기서, 행렬 $U, \Sigma, V$ 는 다음 세 가지 성질을 가진다.
+
+- Property S1 : $\Sigma$ 는 대각행렬이고 그 원소들 $\sigma_1, …, \sigma_r$ 은 양수이고 내림차순이다.
+- Property S2 : $V$ 는 열-직교행렬이다.
+- Property S3 : $U$ 는 열-직교행렬이다.
+
+***Theorem*** : $\mathbb{R}$ 상의 모든 행렬 $A$는 *특이값분해(SVD)* 를 가진다.
+
+
+
+특이값 분해는 전치에 대해 대칭성이 있다. 행렬곱의 전치의 성질에 의하면 다음이 성립한다.
+$$
+\begin{eqnarray} A^{ T } & = & (U\Sigma V^{ T })^{ T } \\  & = & V\Sigma ^{ T }U^{ T } \\  & = & V\Sigma U^{ T } \end{eqnarray}
+$$
+위의 식에서 $\Sigma$의 전치행렬은 $\Sigma$ 자신이다. 따라서, $A^T$의 SVD는 $A$의 SVD에서 $U$ 와 $V$ 를 바꾸면 된다.
+
+
+
+### 12.3.4 가장 가까운 $k$-차원 공간을 찾는 데 오른쪽 특이벡터 사용하기
+
+***Lemma*** : $v_1, …, v_k$ 는 벡터공간 $\mathcal{V}$ 에 대한 정규직교 벡터 기저라고 하면,
+$$
+(a_1 에서\mathcal{V}까지의 거리)^{2} + \cdots + (a_m에서 \mathcal{V}까지의 거리)^{2}
+$$
+은 $\left\| A \right\|_{F}^{2} - \left\| Av_1 \right\|^{2} - \left\| Av_2 \right\|^{2} - \cdots - \left\| Av_k \right\|^{2}$ 이다.
+
+- **Proof** : 행렬 $A$의 각 벡터 $a_i$ 에 대해, $a_i = a_{i}^{||\mathcal{V}} + a_{i}^{\perp \mathcal{V}}$ 라고 표현하자. 피타고라스 정리에 의하면, $\left\| a_{i}^{\perp \mathcal{V}} \right\|^{2} = \left\| a_1 \right\|^{2} - \left\| a_{1}^{|| \mathcal{V}} \right\|^{2}$  이다. 그러므로 제곱 거리의 합은 다음과 같다.
+
+$$
+\left( \left\| a_1 \right\|^{2} - \left\| a_{1}^{|| \mathcal{V}} \right\|^{2} \right) + \cdots + \left( \left\| a_m \right\|^{2} - \left\| a_{m}^{|| \mathcal{V}} \right\|^{2}  \right)
+$$
+
+- 위의 식은 아래와 동일하다.
+
+$$
+\left( \left\| a_1 \right\|^{2} + \cdots + \left\| a_m \right\|^{2}   \right) - \left(  \left\| a_{1}^{|| \mathcal{V}} \right\| ^{2} +\cdots + \left\| a_{m}^{|| \mathcal{V}} \right\|^{2}  \right)
+$$
+
+- 위의 식에서 첫 번째 합 $\left\| a_1 \right\|^{2} + \cdots + \left\| a_m \right\|^{2}$ 은 $\left\| A \right\|_{F}^{2}$ 와 동일하다. 두 번째 합은 다음과 같다.
+
+$$
+\begin{eqnarray} \left\| a_{ 1 }^{ ||\mathcal{ V } } \right\| ^{ 2 }+\cdots +\left\| a_{ m }^{ ||{\mathcal V } } \right\| ^{ 2 } &  &  \\  & = & \left( \left\| a_{ 1 }^{ ||{ { v }_{ 1 } } } \right\| ^{ 2 }+\cdots +\left\| a_{ m }^{ ||{ { v }_{ k } } } \right\| ^{ 2 } \right) +\cdots +\left( \left\| a_{ m }^{ ||{ { v }_{ 1 } } } \right\| ^{ 2 }+\cdots +\left\| a_{ m }^{ ||{ { v }_{ k } } } \right\| ^{ 2 } \right)  \\  & = & \left( \left< a_{ 1 },v_{ 1 } \right> ^{ 2 }+\cdots +\left< a_{ 1 },v_{ k } \right> ^{ 2 } \right) +\cdots +\left( \left< a_{ m },v_{ 1 } \right> ^{ 2 }+\cdots +\left< a_{ m },v_{ k } \right> ^{ 2 } \right)  \end{eqnarray}
+$$
+
+- 위의 내적을 다시 정리하면 최종적으로 다음과 같다.
+
+$$
+\left( \left< a_{ 1 },v_{ 1 } \right> ^{ 2 }+\cdots +\left< a_{ 1 },v_{ k } \right> ^{ 2 } \right) +\cdots +\left( \left< a_{ m },v_{ 1 } \right> ^{ 2 }+\cdots +\left< a_{ m },v_{ k } \right> ^{ 2 } \right) =\left\| Av_1 \right\|^{2} + \left\| Av_2 \right\|^{2} + \cdots + \left\| Av_k \right\|^{2}
+$$
 
