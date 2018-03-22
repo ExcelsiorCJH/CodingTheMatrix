@@ -405,62 +405,165 @@ $$
 
 
 
-### 12.3.4 가장 가까운 $k$-차원 공간을 찾는 데 오른쪽 특이벡터 사용하기
+- ### 12.3.4 가장 가까운 $k$-차원 공간을 찾는 데 오른쪽 특이벡터 사용하기
 
-***Lemma*** : $v_1, …, v_k$ 는 벡터공간 $\mathcal{V}$ 에 대한 정규직교 벡터 기저라고 하면,
-$$
-(a_1 에서\mathcal{V}까지의 거리)^{2} + \cdots + (a_m에서 \mathcal{V}까지의 거리)^{2}
-$$
-은 $\left\| A \right\|_{F}^{2} - \left\| Av_1 \right\|^{2} - \left\| Av_2 \right\|^{2} - \cdots - \left\| Av_k \right\|^{2}$ 이다.
+  ***Lemma*** : $v_1, …, v_k$ 는 벡터공간 $\mathcal{V}$ 에 대한 정규직교 벡터 기저라고 하면,
+  $$
+  (a_1 에서\mathcal{V}까지의 거리)^{2} + \cdots + (a_m에서 \mathcal{V}까지의 거리)^{2}
+  $$
+  은 $\left\| A \right\|_{F}^{2} - \left\| Av_1 \right\|^{2} - \left\| Av_2 \right\|^{2} - \cdots - \left\| Av_k \right\|^{2}$ 이다.
 
-- **Proof** : 행렬 $A$의 각 벡터 $a_i$ 에 대해, $a_i = a_{i}^{||\mathcal{V}} + a_{i}^{\perp \mathcal{V}}$ 라고 표현하자. 피타고라스 정리에 의하면, $\left\| a_{i}^{\perp \mathcal{V}} \right\|^{2} = \left\| a_1 \right\|^{2} - \left\| a_{1}^{|| \mathcal{V}} \right\|^{2}$  이다. 그러므로 제곱 거리의 합은 다음과 같다.
+  - **Proof** : 행렬 $A$의 각 벡터 $a_i$ 에 대해, $a_i = a_{i}^{||\mathcal{V}} + a_{i}^{\perp \mathcal{V}}$ 라고 표현하자. 피타고라스 정리에 의하면, $\left\| a_{i}^{\perp \mathcal{V}} \right\|^{2} = \left\| a_1 \right\|^{2} - \left\| a_{1}^{|| \mathcal{V}} \right\|^{2}$  이다. 그러므로 제곱 거리의 합은 다음과 같다.
 
-$$
-\left( \left\| a_1 \right\|^{2} - \left\| a_{1}^{|| \mathcal{V}} \right\|^{2} \right) + \cdots + \left( \left\| a_m \right\|^{2} - \left\| a_{m}^{|| \mathcal{V}} \right\|^{2}  \right)
-$$
+  $$
+  \left( \left\| a_1 \right\|^{2} - \left\| a_{1}^{|| \mathcal{V}} \right\|^{2} \right) + \cdots + \left( \left\| a_m \right\|^{2} - \left\| a_{m}^{|| \mathcal{V}} \right\|^{2}  \right)
+  $$
 
-- 위의 식은 아래와 동일하다.
+  - 위의 식은 아래와 동일하다.
 
-$$
-\left( \left\| a_1 \right\|^{2} + \cdots + \left\| a_m \right\|^{2}   \right) - \left(  \left\| a_{1}^{|| \mathcal{V}} \right\| ^{2} +\cdots + \left\| a_{m}^{|| \mathcal{V}} \right\|^{2}  \right)
-$$
+  $$
+  \left( \left\| a_1 \right\|^{2} + \cdots + \left\| a_m \right\|^{2}   \right) - \left(  \left\| a_{1}^{|| \mathcal{V}} \right\| ^{2} +\cdots + \left\| a_{m}^{|| \mathcal{V}} \right\|^{2}  \right)
+  $$
 
-- 위의 식에서 첫 번째 합 $\left\| a_1 \right\|^{2} + \cdots + \left\| a_m \right\|^{2}$ 은 $\left\| A \right\|_{F}^{2}$ 와 동일하다. 두 번째 합은 다음과 같다.
+  - 위의 식에서 첫 번째 합 $\left\| a_1 \right\|^{2} + \cdots + \left\| a_m \right\|^{2}$ 은 $\left\| A \right\|_{F}^{2}$ 와 동일하다. 두 번째 합은 다음과 같다.
 
-$$
-\begin{eqnarray} \left\| a_{ 1 }^{ ||\mathcal{ V } } \right\| ^{ 2 }+\cdots +\left\| a_{ m }^{ ||{\mathcal V } } \right\| ^{ 2 } &  &  \\  & = & \left( \left\| a_{ 1 }^{ ||{ { v }_{ 1 } } } \right\| ^{ 2 }+\cdots +\left\| a_{ m }^{ ||{ { v }_{ k } } } \right\| ^{ 2 } \right) +\cdots +\left( \left\| a_{ m }^{ ||{ { v }_{ 1 } } } \right\| ^{ 2 }+\cdots +\left\| a_{ m }^{ ||{ { v }_{ k } } } \right\| ^{ 2 } \right)  \\  & = & \left( \left< a_{ 1 },v_{ 1 } \right> ^{ 2 }+\cdots +\left< a_{ 1 },v_{ k } \right> ^{ 2 } \right) +\cdots +\left( \left< a_{ m },v_{ 1 } \right> ^{ 2 }+\cdots +\left< a_{ m },v_{ k } \right> ^{ 2 } \right)  \end{eqnarray}
-$$
+  $$
+  \begin{eqnarray} \left\| a_{ 1 }^{ ||\mathcal{ V } } \right\| ^{ 2 }+\cdots +\left\| a_{ m }^{ ||{\mathcal V } } \right\| ^{ 2 } &  &  \\  & = & \left( \left\| a_{ 1 }^{ ||{ { v }_{ 1 } } } \right\| ^{ 2 }+\cdots +\left\| a_{ m }^{ ||{ { v }_{ k } } } \right\| ^{ 2 } \right) +\cdots +\left( \left\| a_{ m }^{ ||{ { v }_{ 1 } } } \right\| ^{ 2 }+\cdots +\left\| a_{ m }^{ ||{ { v }_{ k } } } \right\| ^{ 2 } \right)  \\  & = & \left( \left< a_{ 1 },v_{ 1 } \right> ^{ 2 }+\cdots +\left< a_{ 1 },v_{ k } \right> ^{ 2 } \right) +\cdots +\left( \left< a_{ m },v_{ 1 } \right> ^{ 2 }+\cdots +\left< a_{ m },v_{ k } \right> ^{ 2 } \right)  \end{eqnarray}
+  $$
 
-- 위의 내적을 다시 정리하면 최종적으로 다음과 같다.
+  - 위의 내적을 다시 정리하면 최종적으로 다음과 같다.
 
-$$
-\left( \left< a_{ 1 },v_{ 1 } \right> ^{ 2 }+\cdots +\left< a_{ 1 },v_{ k } \right> ^{ 2 } \right) +\cdots +\left( \left< a_{ m },v_{ 1 } \right> ^{ 2 }+\cdots +\left< a_{ m },v_{ k } \right> ^{ 2 } \right) =\left\| Av_1 \right\|^{2} + \left\| Av_2 \right\|^{2} + \cdots + \left\| Av_k \right\|^{2}
-$$
+  $$
+  \left( \left< a_{ 1 },v_{ 1 } \right> ^{ 2 }+\cdots +\left< a_{ 1 },v_{ k } \right> ^{ 2 } \right) +\cdots +\left( \left< a_{ m },v_{ 1 } \right> ^{ 2 }+\cdots +\left< a_{ m },v_{ k } \right> ^{ 2 } \right) =\left\| Av_1 \right\|^{2} + \left\| Av_2 \right\|^{2} + \cdots + \left\| Av_k \right\|^{2}
+  $$
 
+  ​
 
+  ***Theorem*** : $A$ 는 $m \times n$ 행렬이라 하고 $a_1, \dots , a_m$ 은 이 행렬의 행이라 하자. $v_1, \dots , v_r$ 은 이 행렬의 오른쪽 특이벡터들이라 하고, $\sigma_1 , \dots , \sigma_r$ 은 특이벡터들에 대응하는 특이값이라하자. 임의의 양의 정수 $k \le r$ 에 대해, $Span\{v_1, \dots , v_k\}$ 은 $k$-차원 벡터공간 $\mathcal{V}$ 이며 이것은 다음을 최소화한다.
+  $$
+  (a_1에서 \mathcal{V}까지의 거리)^2 + \cdots + (a_m에서 \mathcal{V}까지의거리)^2
+  $$
+  즉, 제곱 거리의 합의 최소값은 $\left\| A \right\|_{F}^{2} - \left\| Av_1 \right\|^{2} - \left\| Av_2 \right\|^{2} - \cdots - \left\| Av_k \right\|^{2} = \left\| A \right\|_{F}^{2} - \sigma_{1}^{2} - \sigma_{2}^{2} - \cdots - \sigma_{k}^{2}$ 이다.
 
-***Theorem*** : $A$ 는 $m \times n$ 행렬이라 하고 $a_1, \dots , a_m$ 은 이 행렬의 행이라 하자. $v_1, \dots , v_r$ 은 이 행렬의 오른쪽 특이벡터들이라 하고, $\sigma_1 , \dots , \sigma_r$ 은 특이벡터들에 대응하는 특이값이라하자. 임의의 양의 정수 $k \le r$ 에 대해, $Span\{v_1, \dots , v_k\}$ 은 $k$-차원 벡터공간 $\mathcal{V}$ 이며 이것은 다음을 최소화한다.
-$$
-(a_1에서 \mathcal{V}까지의 거리)^2 + \cdots + (a_m에서 \mathcal{V}까지의거리)^2
-$$
-즉, 제곱 거리의 합의 최소값은 $\left\| A \right\|_{F}^{2} - \left\| Av_1 \right\|^{2} - \left\| Av_2 \right\|^{2} - \cdots - \left\| Av_k \right\|^{2} = \left\| A \right\|_{F}^{2} - \sigma_{1}^{2} - \sigma_{2}^{2} - \cdots - \sigma_{k}^{2}$ 이다.
+  - **Proof** : 공간 $\mathcal{V} = Span\{v_1, \dots , v_k \}$ 에 대한 제곱 거리의 합은 아래와 같다.
 
-- **Proof** : 공간 $\mathcal{V} = Span\{v_1, \dots , v_k \}$ 에 대한 제곱 거리의 합은 아래와 같다.
+  $$
+  \left\| A \right\|_{F}^{2} - \sigma_{1}^{2} - \sigma_{2}^{2} - \cdots - \sigma_{k}^{2} \quad \longrightarrow (1)
+  $$
 
-$$
-\left\| A \right\|_{F}^{2} - \sigma_{1}^{2} - \sigma_{2}^{2} - \cdots - \sigma_{k}^{2} \quad \longrightarrow (1)
-$$
+  - 이값이 최소값임을 증명하기 위해서는 임의의 다른 $k$-차원 벡터공간 $\mathcal{W}$ 가 더 작지 않은 제곱의 합이 된다는 것을 보여줘야 한다. 임의의 $k$-차원 벡터공간 $\mathcal{W}$ 는 정규직교 기저를 가지며, $w_1, \dots , w_k$ 는 이러한 기저라고 하자. 이 기저 벡터들을 위의 Lemma에 적용하면 $a_1, \dots, a_m$ 에서 $\mathcal{W}$ 까지의 제곱 거리들의 합을 구할 수 있다.
 
-- 이값이 최소값임을 증명하기 위해서는 임의의 다른 $k$-차원 벡터공간 $\mathcal{W}$ 가 더 작지 않은 제곱의 합이 된다는 것을 보여줘야 한다. 임의의 $k$-차원 벡터공간 $\mathcal{W}$ 는 정규직교 기저를 가지며, $w_1, \dots , w_k$ 는 이러한 기저라고 하자. 이 기저 벡터들을 위의 Lemma에 적용하면 $a_1, \dots, a_m$ 에서 $\mathcal{W}$ 까지의 제곱 거리들의 합을 구할 수 있다.
+  $$
+  \left\| A \right\|_{F}^{2} - \left\| Aw_1 \right\|^{2} - \left\| Aw_2 \right\|^{2} - \cdots - \left\| Aw_k \right\|^{2} \quad \longrightarrow (2)
+  $$
 
-$$
-\left\| A \right\|_{F}^{2} - \left\| Aw_1 \right\|^{2} - \left\| Aw_2 \right\|^{2} - \cdots - \left\| Aw_k \right\|^{2} \quad \longrightarrow (2)
-$$
+  - $\mathcal{V}$ 가 가장 가깝다는 것을 보여주기 위해, 식 (2)의 값이 식 (1)의 값보다 작지 않다는 것을 아래와 같이 보여줘야한다.
 
-- $\mathcal{V}$ 가 가장 가깝다는 것을 보여주기 위해, 식 (2)의 값이 식 (1)의 값보다 작지 않다는 것을 아래와 같이 보여줘야한다.
+  $$
+  \left\| Aw_1 \right\|^{2} + \left\| Aw_2 \right\|^{2} + \cdots + \left\| Aw_k \right\|^{2} \le  \sigma_{1}^{2} + \sigma_{2}^{2} + \cdots + \sigma_{k}^{2}
+  $$
 
-$$
-\left\| Aw_1 \right\|^{2} + \left\| Aw_2 \right\|^{2} + \cdots + \left\| Aw_k \right\|^{2} \le  \sigma_{1}^{2} + \sigma_{2}^{2} + \cdots + \sigma_{k}^{2}
-$$
+  - 간단하게 하기 위해, 열들이 $w_1, \dots , w_k$ 인 행렬 다음과 같이  $W$를 사용하여 나타내자.
 
-- ​
+  $$
+  \left\| AW \right\|_{F}^{2} = \left\| Aw_1 \right\|^{2} + \left\| Aw_2 \right\|^{2} + \cdots + \left\| Aw_k \right\|^{2}
+  $$
+
+  - 행렬 $A$ 는 $A = U\Sigma V^T$ 로 인수분해 될 수 있다. 여기서, $U$ 와 $V$ 는 열-직교이고 $\Sigma$ 는 대각행렬이다. $\left\| AW \right\|_{F}^{2}=\left\| U\Sigma V^T W \right\|_{F}^{2}$ 이다. 이제, $i=1, \dots , k$ 에 대해, $v_i$ 의 $\mathcal{W}$ 상으로의 투영을 생각해 보자.
+
+  $$
+  v_i = v_{i}^{|| \mathcal{W}} + v_{i}^{\perp \mathcal{W}}
+  $$
+
+  - 위의 식에서 우변의 두 벡터들은 직교하므로 피타고리스 정리에 의해 다음이 성립한다.
+
+  $$
+  \left\| v_i \right\|^{2} = \left\| v_i^{|| \mathcal{W}} \right\| ^{2} + \left\| v_i^{\perp \mathcal{W}} \right\|^{2}
+  $$
+
+  - $\left\| v_i^{|| \mathcal{W}} \right\|^{2} \le \left\| v_i \right\|^{2} =1 $이다. $x_i$ 는 $v_i^{|| \mathcal{W}}$ 의 $w_1, \dots , w_k$ 에 대한 좌표표현이라고 하자. 그렇게 되면, $v_i^{|| \mathcal{W}} = Wx_i$ 이다. $W$는 열-직교이므로, $\left\| Wx_i \right\| = \left\| x_i \right\|$ 이므로, $\left\| x_i \right\|^{2} \le 1$ 이다. 
+  - $w_1, \dots , w_k$ 는 정규직교이므로 다음과 같이 쓸 수 있다.
+
+  $$
+  x_i = [\left< v_1, w_1 \right>, \left< v_2, w_2 \right>, \dots , \left< v_i, w_k \right>]
+  $$
+
+  - 이 벡터는 행렬-행렬 곱셈의 벡터-행렬 정의 및 벡터-행렬 곱셈의 도트곱 정의에 의해 $V^TW$의 행 $i$이다.  
+
+  $$
+  \begin{eqnarray} \left\| \Sigma V^{ T }W \right\| ^{ 2 } & = & \sigma _{ 1 }^{ 2 }\left\| V^{ T }W의행1 \right\| ^{ 2 }+\cdots +\sigma _{ k }^{ 2 }\left\| V^{ T }W의행m \right\| ^{ 2 } \\  & = & \sigma _{ 1 }^{ 2 }\left\| x_{ 1 } \right\| ^{ 2 }+\cdots +\sigma _{ k }^{ 2 }\left\| x_{ k } \right\| ^{ 2 } \\  & \le  & \sigma _{ 1 }^{ 2 }+\cdots +\sigma _{ k }^{ 2 } \end{eqnarray}
+  $$
+
+  ​
+
+  ### 12.3.5 $A$ 에 대한 최상의 랭크-$k$ 근사
+
+  12.2.4 에서 보았듯이, $A$에 대한 최상의 랭크-1 근사는 $\sigma_1 u_1 v_1^T$ 이다. 그렇다면 이것을 일반화 해보자.
+
+  ***Theorem*** : $k \le rank A$ 에 대해, $A$의 최상의 랭크-$k$ 근사는 다음과 같다.
+  $$
+  \tilde{A} = \sigma_1 u_1 v_1^T + \cdots + \sigma_k u_k v_k^T
+  $$
+  이때, $\left\| A - \tilde{A} \right\|_F^2 = \left\| A \right\|_{F}^{2} - \sigma_{1}^{2} - \sigma_{2}^{2} - \cdots - \sigma_{k}^{2}$ 이다. 
+
+  - **Proof** : 
+
+  $$
+  \left\| A - \tilde{A} \right\|_F^2 = \left\| A - \tilde{A} 의 행1 \right\|^2 + \cdots + \left\| A -\tilde{A}의 행 m \right\| ^2 
+  $$
+
+  - $\tilde{A}$ 가 $k$ 보다 작거나 같은 랭크를 가지기 위해서는 차원 $k$ 의 어떤 벡터공간 $\mathcal{V}$ 에 $\tilde{A}$ 의 모든 행이 속해야한다. 벡터공간 $\mathcal{V}$ 에 대한 $\tilde{A}$ 의 최상의 선택은 다음과 같다. 
+
+  $$
+  \tilde { A } =\quad \begin{bmatrix} - & a_{ 1 }에가장가까운 \mathcal{V} 에속하는벡터 & - \\  & \vdots  &  \\ - & a_{ m }에가장가까운 \mathcal{V} 에속하는벡터 & - \end{bmatrix}
+  $$
+
+  $$
+  \left\| A - \tilde{A} \right\|^{2}  =(a_1에서 \mathcal{V}까지의 거리)^{2} + \cdots + (a_m 에서 \mathcal{V} 까지의 거리)^{2}
+  $$
+
+  - 12.3.4의 Theorem에 의하면, $\mathcal{V}$ 까지의 제곱 거리들의 합을 최소화하기 위해서는 $\mathcal{V}$ 가 첫 $k$ 개 오른쪽 특이벡터들의 생성이 되어야 하고, 그 제곱 거리들의 합은 $\left\| A \right\|_{F}^{2} - \sigma_{1}^{2} - \sigma_{2}^{2} - \cdots - \sigma_{k}^{2}$ 이다. 
+  - $i=1, \dots, m$ 에 대해, $a_i$ 에 가장 가까운 $\mathcal{V}$ 에 속하는 벡터는 $a_i$ 의 $\mathcal{V}$ 상으로의 투영이고, 다음과 같이 쓸 수 있다. 
+
+  $$
+  \begin{eqnarray} a_i 의 \mathcal{V}상으로의 투영 & = & a_i의 v_1에  따른 투영 + \cdots + a_i 의 v_m에 따른 투영 \\  & = & \left<a_i, v_1 \right>v_1 + \cdots + \left< a_i, v_k \right> v_k \end{eqnarray}
+  $$
+
+  - 위의 식을 $a_1 , \dots , a_m$ 에 대하여 행렬의 덧셈 정의를 사용하면 다음과 같다.
+
+  $$
+  \begin{eqnarray} \tilde { A }  & = & \begin{bmatrix} - & \left< a_{ 1 },v_{ 1 } \right> v_{ 1 } & - \\  & \vdots  &  \\ - & \left< a_{ m },v_{ 1 } \right> v_{ 1 } & - \end{bmatrix}+\cdots +\begin{bmatrix} - & \left< a_{ 1 },v_{ k } \right> v_{ k } & - \\  & \vdots  &  \\ - & \left< a_{ m },v_{ k } \right> v_{ k } & - \end{bmatrix} \\  & = & \sigma _{ 1 }\begin{bmatrix}  \\  \\ u_{ 1 } \\  \\  \end{bmatrix}\begin{bmatrix}  & v_{ 1 } &  \end{bmatrix}+\cdots +\sigma _{ k }\begin{bmatrix}  \\  \\ u_{ k } \\  \\  \end{bmatrix}\begin{bmatrix}  & v_k &  \end{bmatrix} \end{eqnarray}
+  $$
+
+  ​
+
+  ​
+
+  ### 12.3.6 최상의 랭크-$k$ 근사에 대한 행렬 형태
+
+  위의 식에서 보았듯이, $A$ 에 대한 최상의 랭크-$k$ 근사는 $k$ 개 랭크-1 행렬들의 합이다.  이를 다음과 같이 쓸 수 있다.
+  $$
+  \tilde{A}=\begin{bmatrix} | &  & | \\ | &  & | \\ u_{ 1 } & \cdots  & u_{ r } \\ | &  & | \\ | &  & | \end{bmatrix}\begin{bmatrix} \sigma _{ 1 } &  &  \\  & \ddots  &  \\  &  & \sigma_r \end{bmatrix}\begin{bmatrix} - & v_{ 1 }^{ T } & - \\  & \vdots  &  \\ - & v_{ r }^{ T } & - \end{bmatrix}
+  $$
+
+  $$
+  \tilde{A} = \tilde{U} \tilde{\Sigma} \tilde{V}^T
+  $$
+
+  ​
+
+  ### 12.3.7 영이 아닌 특이값들의 개수는 rank $A$ 이다. 
+
+  12.3.2의 Lemma 에 의해, 오른쪽 특이벡터들의 개수 $r$ 은 적어도 $A$ 의 랭크다.
+
+  $k = $ rank $A$ 라고 하면, 이 $k$ 값에 대해, $A$ 에 대한 최상의 랭크-$k$ 근사는 $A$ 자신이다.   행렬 $A$ 의 SVD를 다시보자.
+  $$
+  \begin{bmatrix}  &  &  \\  &  &  \\  & A &  \\  &  &  \\  &  &  \end{bmatrix}=\underbrace { \begin{bmatrix} | &  & | \\ | &  & | \\ u_{ 1 } & \cdots  & u_{ r } \\ | &  & | \\ | &  & | \end{bmatrix} }_{ U } \underbrace { \begin{bmatrix} \sigma _{ 1 } &  &  \\  & \ddots  &  \\  &  & \sigma _{ r } \end{bmatrix} }_{ \Sigma  } \underbrace { \begin{bmatrix} - & v_{ 1 }^{ T } & - \\  & \vdots  &  \\ - & v_{ r }^{ T } & - \end{bmatrix} }_{ V^{ T } }
+  $$
+  $A$의 각 행은 $U \Sigma$ 와 $V^T$ 의 곱에 대응하는 행이다. 따라서, 선형결합에 의해 $A$ 의 각 행은 $V^T$ 의 행들의 선형결합이다. 그리고, $V^T$ 의 행들은 서로 직교하고 영이 아닌 선형독립이다. 또한, 행들의 랭크는 $rank A$ 이고 이들의 생성의 차원은 $rank A$ 이다. 따라서, $Row A$ 와 $Row V^T$ 는 같다. 
+
+  이와 마찬가지로 $Col A = Col U$ 이다. 그 이유는 $A$ 의 각 열은 $U$ 와 $\Sigma V^T$ 의 열과의 곱이고, $\dim Col A = rank A = \dim Col U$ 이기 때문이다. 
+
+  ​
+
+  ***Proposition*** : $A$의 특이값 분해 $U \Sigma V^T$ 에서, $Col U = Col A$ 이고 $Row V^T = Row A$ 이다.
