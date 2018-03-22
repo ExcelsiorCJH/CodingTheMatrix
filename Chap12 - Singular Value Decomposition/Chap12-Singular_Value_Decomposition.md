@@ -437,3 +437,30 @@ $$
 \left( \left< a_{ 1 },v_{ 1 } \right> ^{ 2 }+\cdots +\left< a_{ 1 },v_{ k } \right> ^{ 2 } \right) +\cdots +\left( \left< a_{ m },v_{ 1 } \right> ^{ 2 }+\cdots +\left< a_{ m },v_{ k } \right> ^{ 2 } \right) =\left\| Av_1 \right\|^{2} + \left\| Av_2 \right\|^{2} + \cdots + \left\| Av_k \right\|^{2}
 $$
 
+
+
+***Theorem*** : $A$ 는 $m \times n$ 행렬이라 하고 $a_1, \dots , a_m$ 은 이 행렬의 행이라 하자. $v_1, \dots , v_r$ 은 이 행렬의 오른쪽 특이벡터들이라 하고, $\sigma_1 , \dots , \sigma_r$ 은 특이벡터들에 대응하는 특이값이라하자. 임의의 양의 정수 $k \le r$ 에 대해, $Span\{v_1, \dots , v_k\}$ 은 $k$-차원 벡터공간 $\mathcal{V}$ 이며 이것은 다음을 최소화한다.
+$$
+(a_1에서 \mathcal{V}까지의 거리)^2 + \cdots + (a_m에서 \mathcal{V}까지의거리)^2
+$$
+즉, 제곱 거리의 합의 최소값은 $\left\| A \right\|_{F}^{2} - \left\| Av_1 \right\|^{2} - \left\| Av_2 \right\|^{2} - \cdots - \left\| Av_k \right\|^{2} = \left\| A \right\|_{F}^{2} - \sigma_{1}^{2} - \sigma_{2}^{2} - \cdots - \sigma_{k}^{2}$ 이다.
+
+- **Proof** : 공간 $\mathcal{V} = Span\{v_1, \dots , v_k \}$ 에 대한 제곱 거리의 합은 아래와 같다.
+
+$$
+\left\| A \right\|_{F}^{2} - \sigma_{1}^{2} - \sigma_{2}^{2} - \cdots - \sigma_{k}^{2} \quad \longrightarrow (1)
+$$
+
+- 이값이 최소값임을 증명하기 위해서는 임의의 다른 $k$-차원 벡터공간 $\mathcal{W}$ 가 더 작지 않은 제곱의 합이 된다는 것을 보여줘야 한다. 임의의 $k$-차원 벡터공간 $\mathcal{W}$ 는 정규직교 기저를 가지며, $w_1, \dots , w_k$ 는 이러한 기저라고 하자. 이 기저 벡터들을 위의 Lemma에 적용하면 $a_1, \dots, a_m$ 에서 $\mathcal{W}$ 까지의 제곱 거리들의 합을 구할 수 있다.
+
+$$
+\left\| A \right\|_{F}^{2} - \left\| Aw_1 \right\|^{2} - \left\| Aw_2 \right\|^{2} - \cdots - \left\| Aw_k \right\|^{2} \quad \longrightarrow (2)
+$$
+
+- $\mathcal{V}$ 가 가장 가깝다는 것을 보여주기 위해, 식 (2)의 값이 식 (1)의 값보다 작지 않다는 것을 아래와 같이 보여줘야한다.
+
+$$
+\left\| Aw_1 \right\|^{2} + \left\| Aw_2 \right\|^{2} + \cdots + \left\| Aw_k \right\|^{2} \le  \sigma_{1}^{2} + \sigma_{2}^{2} + \cdots + \sigma_{k}^{2}
+$$
+
+- ​
