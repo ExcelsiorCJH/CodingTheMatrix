@@ -57,3 +57,88 @@ $$
 
 
 ***Definition*** : 만약 어떤 정방행렬 $A$가 대각행렬과 유사행렬이면, 즉 대각행렬 $\Lambda$에 대해 $S^{-1}AS = \Lambda$를 만족하는 가역행렬 $S$가 있으면, $A$는 *'대각화가 가능하다(diagonalizable)'* 라고 한다. 
+
+만약 $\Lambda$ 가 대각행렬 $\begin{bmatrix} \lambda _{1} &  &  \\  & \ddots  &  \\  &  & \lambda _{ n } \end{bmatrix}$ 이면, 이 행렬의 고유값은 그 대각원소들인 $\lambda_1, \dots , \lambda_n$ 이다. 만약 행렬 $A$와 $\Lambda$가 유사행렬이면, 위의 Proposition에 의해 $A$의 고유값은 $\Lambda$의 고유값 즉, $\Lambda$의 대각원소들이다. 
+
+
+
+***Lemma*** : 만약 $\Lambda = S^{-1}AS$ 가 대각행렬이면, $\Lambda$ 의 대각원소들은 고유값들이고, $S$의 열들은 선형독립인 고유벡터들이다. 
+
+$n \times n$ 행렬 $A$가 $n$개의 선형독립인 고유벡터 $v_1, \dots , v_n$을 가진다고 하고, $\lambda_1, \dots, \lambda_n$은 대응하는 고유값들이라 하자. 행렬 $S$를 $\begin{bmatrix} |  &  & |  \\ v_1 & \cdots  & v_n \\  | &  & | \end{bmatrix}$ 로 나타내고, $\Lambda$를 행렬 $\begin{bmatrix} \lambda _{1} &  &  \\  & \ddots  &  \\  &  & \lambda _{ n } \end{bmatrix}$ 라고 하면, $AS = SA$이다. $S$는 정방행렬이고, 그 열들은 선형독립이므로 가역행렬이다. 위의 식에서 오른쪽에 $S^{-1}$ 을 곱하면 $A = S \Lambda S^{-1}$이 구해진다. 이것은 $A$가 대각화가 가능하다는 것을 보여주며, 아래 lemma로 정리할 수 있다.
+
+
+
+***Lemma*** : 만약 $n \times n$ 행렬 $A$가 $n$개의 선형독립인 고유벡터를 가지면 $A$는 대각화가 가능하다. 
+
+***Theorem*** : $n \times n$ 행렬이 대각화 가능할 필요충분조건은 이 행렬이 $n$개의 선형독립인 고유벡터를 가지는 것이다. 
+
+
+
+
+
+## 13.4 고유벡터에 대한 좌표표현
+
+$A$를 $n \times n$ 행렬이라 하고, $t = 1, 2, \dots $에 대해, $x^{(t)} = A^t x^{(0)}$ 라 하자. 또한, 행렬 $A$ 는 대각화 가능하다고 가정하자. 즉, $S^{-1} AS=\Lambda$를 만족하는 가역행렬 $S$와 대각행렬 $\Lambda$가 존재한다. $\lambda_1, \dots , \lambda_n$ 은 $\Lambda$의 대각원소라 하자. 이 대각원소들은 $A$의 고유값이다.  그리고 $v_1, \dots , v_n$은 고유벡터들이며 행렬 $S$의 열이다. 고유벡터들에 대한 $x^{(t)}$ 의 좌표표현을 $u^{(t)}$라고 하면, $x^{(t)} = A^t x^{(0)}$ 는 훨씬 단순한 형태로 표현된다.
+$$
+\begin{bmatrix}  \\ u^{ (t) } \\  \end{bmatrix}=\begin{bmatrix} \lambda_{1}^{t} &  &  \\  & \ddots &  \\  &  & \lambda_{n}^{t} \end{bmatrix}\begin{bmatrix}  \\ u^{(0)} \\  \end{bmatrix}
+$$
+위 식이 단순한 이유는 $u^{(0)}$ 의 해당 원소에 대응하는 고유값의 $t$ 제곱을 곱하면 $u^{(t)}$의 각 원소가 구해지기 때문이다. 
+
+이것을 다른 각도에서 한 번 살펴보자.
+
+고유벡터들은 $\mathbb{R}^n$에 대한 기저를 형성한다. 따라서, 임의의 벡터 $x$는 고유벡터들의 선형결합으로 나타낼 수 있다. 
+$$
+x = \alpha_1 v_1 + \cdots + \alpha_n v_n
+$$
+위 식에서 양변의 왼쪽에 $A$를 곱해보자.
+$$
+\begin{eqnarray} Ax & = & A\left( \alpha _{ 1 }v_{ 1 } \right) +\cdots +A\left( \alpha _{ n }v_{ n } \right)  \\  & = & \alpha _{ 1 }Av_{ 1 }+\cdots +\alpha _{ n }Av_{ n } \\  & = & \alpha _{ 1 }\lambda _{ 1 }v_{ 1 }+\cdots +\alpha _{ n }\lambda _{ n }v_{ n } \end{eqnarray}
+$$
+같은 방식으로 $A(Ax)$를 계산하면, 다음과 같이 된다.
+$$
+A^{2}x = \alpha_1 \lambda_1^2 v_1 + \cdots + \alpha_n \lambda_n^2 v_n
+$$
+이를 좀더 일반적인, 임의의 음이 아닌 정수 $t$에 대해 다음과 같이 쓸 수 있다.
+$$
+A^t x = \alpha_1 \lambda_1^t v_1 + \cdots + \alpha_n \lambda_n^t v_n
+$$
+이제, 어떤 고유값의 절대값이 다른 것들보다 약간이라도 큰 경우를 생각해 보자. 이때, $t$가 충분히 클 경우, 위의 식에서 우변은 절대값이 큰 고유값이 포함된 항에 의해 결정되고 다른 항들은 상대적으로 작은 값이 될 것이다. 
+
+특히, $\lambda_1$의 절대값이 다른 모든 고유값보다 크다고 가정해 보자. 이 경우, $t$가 충분히 크다면 $A^t x \approx \alpha_1 \lambda_1^t v_1$ 이 될 것이다.  실제로, 절대값이 1보다 작은 고유값에 대응하는 항은 $t$가 증가함에 따라 그 값이 점점 작아지게 된다.
+
+
+
+*13.5 생략*
+
+
+
+## 13.6 고유값의 존재
+
+어떠한 상황에서 정방행렬이 고유값을 가지는지 알 수 있을까? 또한 대각화가 가능할까?
+
+
+
+### 13.6.1 양의 정부호(Positive-Definite) 행렬과 양의 준정부호(Positive-Semidefinite) 행렬
+
+$A$를 임의의 가역행렬이라고 하면, 이 행렬에 12장에서 배운 [특이값 분해(SVD)](http://nbviewer.jupyter.org/github/ExcelsiorCJH/CodingTheMatrix/blob/master/Chap12%20-%20Singular%20Value%20Decomposition/Chap12-Singular_Value_Decomposition.ipynb) 를 적용하면 다음과 같다.
+$$
+A = U \Sigma V^T
+$$
+위의 식에서 양변 왼쪽에 $A^T = \left( U \Sigma V^T \right)^T = V \Sigma U^T$ 를 곱하면 다음 식이 얻어진다.
+$$
+\begin{eqnarray} { A }^{ T }A & = & V \Sigma U^T U \Sigma V^T  \\  & = & V \Sigma \Sigma V^T \\  & = & V \Sigma^2 V^T \end{eqnarray}
+$$
+위의 식에서 왼쪽에 $V^T$를 곱하고 오른쪽에 $V$를 곱하면, 다음 식이 얻어진다.
+$$
+V^T \left( A^T A \right) V = \Sigma^2
+$$
+여기서, $A^T A$는 대각화가 가능하고 고유값은 $A$의 특이값(singular value)의 제곱이다. 이 고유값들은 모두 양의 실수이다.
+
+또한, $A^T A$는 아래의 식에서 알 수 있듯이 대칭행렬이다. 
+$$
+\left( A^T A \right)^T = A^T \left( A^T \right)^T = A^T A
+$$
+
+
+***Definition*** : 고유값이 모두 양의 실수인 대칭행렬은 양의 정부호행렬이라 한다. 
+
