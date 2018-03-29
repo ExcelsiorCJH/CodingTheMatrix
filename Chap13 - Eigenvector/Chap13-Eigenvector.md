@@ -139,6 +139,135 @@ $$
 \left( A^T A \right)^T = A^T \left( A^T \right)^T = A^T A
 $$
 
+***Definition*** : 고유값이 모두 양의 실수인 대칭행렬은 *양의 정부호행렬* 이라 한다. 
 
-***Definition*** : 고유값이 모두 양의 실수인 대칭행렬은 양의 정부호행렬이라 한다. 
 
+
+### 13.6.2 고유값이 모두 다른 행렬
+
+정방행렬을 대각화가 가능하게 하는 또 다른 조건에 대해 알아보자.
+
+***Lemma*** : 행렬 $A$ 의 모두 다른(distinct) 고유값으로 이루어진 임의의 집합 $T$에 대해, 대응하는 *고유벡터들은 선형독립* 이다.
+
+- **Proof** : 고유벡터들이 선형종속이라고 가정해 보자.
+
+$$
+0 = \alpha_1 v_1 + \cdots + \alpha_r v_r \quad \rightarrow (1)
+$$
+
+- 위 식은 $T$에 속하는 고유값들에 대응하는 고유벡터들의 부분집합으로 구성된 선형결합이며, 특히 최소 크기의 부분집합으로 된 선형결합이라고 하자. $\lambda_1, \dots, \lambda_r$은 대응하는 고유값이라 하면, 다음이 성립한다.
+
+
+$$
+\begin{eqnarray} 0 & = & A\left( 0 \right)  \\  & = & A\left( \alpha _{ 1 }v_{ 1 }+\cdots +\alpha _{ r }v_{ r } \right)  \\  & = & \alpha _{ 1 }Av_{ 1 }+\cdots +\alpha _{ r }Av_{ r } \\  & = & \alpha_1 \lambda_1 v_1 + \cdots + \alpha_r \lambda_r v_r \end{eqnarray} \quad \rightarrow (2)
+$$
+
+- 위의 식처럼 $v_1, \dots , v_r$ 사이에 새로운 선형종속이 얻어진다. $\lambda_1$을 식(1)에 곱한 뒤 식(2)에서 빼면 다음 식을 얻는다.
+
+$$
+0 = (\lambda_1 - \lambda_1)\alpha_1 v_1 + (\lambda_2 - \lambda_1) \alpha_2 v_2 + \cdots + (\lambda_r - \lambda_1) \alpha_r v_r
+$$
+
+- 위의 식에서 첫 번째 계수는 0 이므로 다음과 같이 쓸 수 있다. 
+
+$$
+0 = (\lambda_2 - \lambda_1) \alpha_2 v_2 + \cdots + (\lambda_r - \lambda_1) \alpha_r v_r
+$$
+
+- 이 식은 식(1)보다 더 작은 수의 벡터를 가지는데, 이것은 우리가 처음에 가정한 최소 크기의 선형결합이라는 가정에 모순된다. 
+
+
+
+
+
+***Theorem*** : $n$ 개의 모두 다른 고유값을 가지는 $n \times n$ 행렬은 대각화 가능하다.
+
+
+
+랜덤한 원소를 가지는 $n \times n$ 행렬은 $n$ 개의 모두 다른 고유값을 가질 가능성이 높다. 따라서, 위의 Theorem은 *대부분*의 정방행렬은 대각화 가능하다는 것을 의미한다. 또한, $n \times n$ 행렬 중 $n$ 개의 모두 다른 고유값을 가지지는 않지만 대각화가 가능한 것이 있다. 바로 $n \times n$ 단위행렬이다. 단위행렬의 고유값은 모두 $1$ 이지만 대각화 가능하다.
+
+
+
+
+
+### 13.6.3 대칭행렬 - Symmetric matrices  
+
+***Theorem(대칭행렬의 대각화)*** : $A$를 $\mathbb{R}$ 상의 대칭행렬이라 하면, $Q^T A Q=\Lambda$ 를 만족하는 직교행렬 $Q$와 실수값(real-valued) 대각행렬 $\Lambda$ 가 존재한다.
+
+
+
+### 13.6.4 상삼각(Upper-triangular) 행렬
+
+모든 정방행렬이 대각화 되는것은 아니다. 간단한 예로, 행렬 $A=\begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$은 대각화 되지 않는다. 
+
+
+
+***Lemma*** : 상삼각 행렬 $U$의 대각원소는 $U$의 고유값이다.
+
+- **Proof** : 어떤 수 $\lambda$ 가 행렬 $U$의 고유값이 될 필요충분 조건은 $U - \lambda I$가 비가역적인 경우이다. $U-\lambda I$는 상삼각행렬이므로 [5.13.3](https://render.githubusercontent.com/view/ipynb?commit=4da59045ef5567f00f363567c106fd2206a79e85&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f457863656c73696f72434a482f436f64696e675468654d61747269782f346461353930343565663535363766303066333633353637633130366664323230366137396538352f4368617030352532302d2532305468652532304d61747269782f4368617030352d5468655f4d61747269782e6970796e62&nwo=ExcelsiorCJH%2FCodingTheMatrix&path=Chap05+-+The+Matrix%2FChap05-The_Matrix.ipynb&repository_id=125392345&repository_type=Repository#5.13.3-%EC%97%AD%ED%96%89%EB%A0%AC%EC%9D%98-%EC%82%AC%EC%9A%A9)에 의해 $U-\lambda I$ 가 비가역적일 필요충분조건은 대각원소 중 적어도 하나가 영인 경우이다. 따라서, $U - \lambda I$의 대각원소가 영일 필요충분조건은 $\lambda$가 $U$의 대각원소 중 하나인 경우이다.
+
+***Example 13.6.6*** : 행렬 $U=\begin{bmatrix} 5 & 9 & 9 \\ 0 & 4 & 7 \\ 0 & 0 & 3 \end{bmatrix}$이 행렬의 대각원소는 $5, 4, 3$ 이고 이 대각원소들은 이 행렬의 고유값이다. 
+
+
+
+$U$의 대각원소로 하나의 값이 여러 번 사용될 수 있다. 예를 들어, 행렬 $U=\begin{bmatrix} 5 & 9 & 9 \\ 0 & 4 & 7 \\ 0 & 0 & 5 \end{bmatrix}$ 에서 $5$는 대각원소로서 2번 사용된다.
+
+
+
+***Definition*** : 상삼각행렬 $U$의 스펙트럼(spectrum, 고유값들의 집합)은 대각원소들의 중복집합(multiset)이다. 중복집합에 포함되는 각각의 수는 $U$의 대각원소에 나타나는 횟수만큼 나타난다. 
+
+
+
+***Example 13.6.8*** : $\begin{bmatrix} 5 & 9 & 9 \\ 0 & 4 & 7 \\ 0 & 0 & 5 \end{bmatrix}$의 스펙트럼은 중복집합 $\{5, 5, 4\}$ 이다.
+
+
+
+*13.7 ~ 13.9 생략*
+
+
+
+## 13.10 행렬식 - Determinant
+
+행렬식을 이용하여 $2 \times 2$ 행렬의 행렬식에 기반을 둔 계산 기법을 사용하여 다각형의 면적을 계산하는 예를 살펴보자.
+
+
+
+### 13.10.1 평행사변형의 면적
+
+$A$를 $2 \times 2$ 행렬이라하고, 이 행렬의 열 $a_1, a_2$는 직교한다고 하자. 이때 다음 직사각형의 면적을 구해보자.
+$$
+\{\alpha_1 a_1 + \alpha_2 a_2 : 0 \le \alpha_1, \alpha_2 \le 1\}
+$$
+![](./images/det01.png)
+
+직사각형의 면적은 두 변의 길이의 곱이므로 $\left\| a_1 \right\| \times \left\| a_2 \right\| $ 이다.
+
+
+
+좀 더 일반적으로, $A$는 $n \times n$ 행렬이고, 이 행렬의 열 $a_1, \dots, a_n$은 직교한다고 하자. 이 경우, hyperrectangle의 부피는 $n$개 변의 길이의 곱, 즉 $\left\| a_1 \right\| \times \left\| a_2 \right\| \times \cdots \times \left\| a_n \right\|$ 이다. 
+$$
+\{ \alpha_1 a_1 + \cdots + \alpha_n a_n : 0 \le \alpha_1 , \dots , \alpha_n \le 1 \}
+$$
+![](./images/det02.png)
+
+
+
+
+
+그렇다면, 이제 직교한다는 가정을 없애보자. $a_1, a_2$는 직교하지 않으므로 아래와 같이 평행사변형이 된다. 이 평행사변형의 면적은 밑변의 길이와 높이의 곱이다. 
+
+![](./images/det03.PNG)
+
+$a_1^{*} = a_1$이라 하고, $a_1$을 평행사변형의 밑변으로 간주하자. 높이 $a_2^{*}$ 는 $a_2$의 투영이며 $a_1^{*}$과 직교한다. 따라서 면적은 $\left\| a_1^{*} \right\| \times \left\| a_2^{*} \right\| $ 가 된다.
+
+
+
+### 13.10.2 평행육면체(Parallelepiped)의 부피 
+
+13.10.1 과 동일한 방식으로 생각해보면, $a_1, \dots , a_n$을 $n$개의 벡터라 했을 때 아래의 집합은 평행육면체(parallelepiped) 형태가 된다.
+$$
+\{\alpha_1 a_1 + \cdots + \alpha_n a_n : 0 \le \alpha_1, \cdots , \alpha_n \le 1\}
+$$
+![](./images/det04.png)
+
+이 평행육면체의 부피는 열벡터들을 직교화해 $a_1^{*}, \dots , a_n^{*}$를 구하고, 이들의 길이를 곱하면 면적을 구할 수 있다.
