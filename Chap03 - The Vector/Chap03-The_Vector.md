@@ -2,8 +2,6 @@
 
 # 벡터 - Vector
 
-해당 포스팅을 Nbviewer 에서 보는 것을 추천한다. $\rightarrow​$ [Nbviewer로 보기](http://nbviewer.jupyter.org/github/ExcelsiorCJH/Study/blob/master/LinearAlgebra/CodingTheMatrix/Chap03%20-%20The%20Vector/Chap03-The_Vector.ipynb)
-
 ## 3.1 벡터란 무엇인가?
 
 *벡터*란 단어는 "vehere(운반하다)"라는 뜻의 라틴어에서 유래되었다. 어떤 것을 한 장소에서 다른 곳으로 이동하는 벡터의 **방향성**을 내포하고 있다. 
