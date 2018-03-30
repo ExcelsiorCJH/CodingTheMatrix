@@ -38,6 +38,31 @@ $$
 
 
 
+
+python에서 `numpy` 모듈의 `numpy.linalg.eig()`를 이용하여 고유값과 고유벡터를 구할 수 있다.
+
+```python
+import numpy as np
+
+A = np.matrix([[1, 2], 
+               [3, 4]])
+
+w, v = np.linalg.eig(A)
+
+print('eigenvalue =', w)
+print('eigenvector =\n', v)
+
+'''출력결과
+eigenvalue = [-0.37228132  5.37228132]
+eigenvector =
+ [[-0.82456484 -0.41597356]
+ [ 0.56576746 -0.90937671]]
+'''
+```
+
+
+
+
 ### 13.3.1 유사성과 대각화 가능성 - Diagonalizability
 
 ***Definition*** : 가역행렬 S에 대해 $S^{-1}AS = B$ 가 만족되면 두 정방행렬 $A$와 $B$는 '유사' 또는 '닮은(similar)' 행렬이라고 한다.
@@ -271,3 +296,91 @@ $$
 ![](./images/det04.png)
 
 이 평행육면체의 부피는 열벡터들을 직교화해 $a_1^{*}, \dots , a_n^{*}$를 구하고, 이들의 길이를 곱하면 면적을 구할 수 있다.
+
+
+
+### 13.10.3 평행사변형 면적을 이용한 다각형의 면적 표현
+
+아래의 다각형의 면적을 계산해보자.
+
+![](./images/det05.PNG)
+
+$a_0, \dots , a_{n-1}$ 을 $(x,y)$ 쌍으로 표현한 다각형의 꼭지점이라 하자. 위의 그림에서 점은 원점의 위치를 나타낸다.
+
+다각형의 면적은 $n$개의 삼각형의 면적으로 나타낼 수 있다.
+
+- $a_0$와 $a_1$로 형성된 삼각형
+- $a_1$과 $a_2$로 형성된 삼각형
+- $\vdots$
+- $a_{n-2}$와 $a_{n-1}$로 형성된 삼각형
+- $a_{n-1}$와 $a_0$로 형성된 삼각형
+
+
+
+$a_0$와 $a_1$로 형성된 삼각형을 복사하여 원래 삼각형에 붙이면 아래와 같이 편행사변형 $\{\alpha_0 a_0 + \alpha_1 a_1 : 0 \le \alpha_0, \alpha_1 \le 1\}$ 이 된다.
+
+![](./images/det06.png)
+
+따라서, 삼각형의 면적은 평행사변형 면적의 절반이다. 따라서, 삼각형 면적을 모두 더하면 다각형의 면적을 얻는다.
+$$
+\frac{1}{2} \left( area(a_0, a_1) + \cdots + area(a_{n-1}, a_0) \right)
+$$
+이번에는 위의 방식으로 면적을 구할 수 없는 다각형을 보자.
+
+예를 들어, $a_i$와 $a_{i+1}$로 형성된 삼각형이 일부 겹쳐져 있고 다각형 내에 포함되지 않는 경우가 있는 다각형이 있다고 하자.
+
+![](./images/det07.PNG)
+
+이러한 이유로, 부호를 가지는 면적($signed$ area)을 고려해준다. 벡터 $a_i$와 $a_{i+1}$로 형성된 평행사변형의 부호를 가지는 면적의 부호는 이들 벡터가 어떻게 위치 되어있는지에 따라 결정된다. 아래의 그림과 같은 경우는 면적이 음수가 된다.
+
+![](./images/det08.PNG)
+
+부호를 가지는 면적을 이용하여 위의 다각형의 면적을 구할 수 있다. 
+$$
+\frac{1}{2} \left( signed area(a_0, a_1) + \cdots + signedarea(a_{n-1}, a_0) \right)
+$$
+
+
+### 13.10.4 행렬식 - Determinant
+
+행렬식(Determinant)은 일종의 함수로 볼 수 있다.
+$$
+\det : 실수의 정방행렬 \longrightarrow \mathbb{R}
+$$
+열 $a_1, \dots , a_n$을 가지는 $n \times n$ 행렬 $A$ 에 대해, $\det A$의 값은 벡터 $a_1, \dots, a_n$에 의해 정의되는 평행육면체의 *부호*를 가지는 부피이다. 
+
+- $a_1, \dots, a_n$은 표준 기저벡터 $e_1, \dots, e_n$이라하면, $A$는 단위행렬이다. 이 경우 평행육면체는 $n$차원의 단위 (하이퍼)큐브 (hyper cube)이고 $\det A$는 $1$이다.
+- 여러가지 양수로 벡터들을 확대/축소(scale)하자.  평행육면체는 cube가 아니라 $n$ 차원 (hyper)rectangle이며, $A$는 양수의 대각원소를 가지는 대각행렬이 되고 $\det A$는 이 대각원소들의 곱이다. 
+
+
+
+***행렬식의 성질*** : $A$를 $n \times n$ 행렬이라 하고, $A = \begin{bmatrix} | &  & | \\ a_{ 1 } & \cdots  & a_{ n } \\ | &  & | \end{bmatrix}$로 표시하자.
+
+- 만약 $a_1 , \dots, a_n$이 직교하면, $\left| \det A \right| =\left\| a_1 \right\| \left\| a_2 \right\| \cdots \left\| a_n \right\| $ 이다.
+- 일반적으로는 $\left| \det A \right| =\left\| a_1^{*} \right\| \left\| a_2^{*} \right\| \cdots \left\| a_n^{*} \right\| $ 이다.
+- 열 $a_i$에 $\alpha$를 곱하는 것은 행렬식에 $\alpha$를 곱하는 것과 같다.
+
+$$
+\det \begin{bmatrix} | &  & | &  & | \\ a_1 & \cdots  & \alpha a_i & \cdots  & a_n \\ | &  & | &  & | \end{bmatrix} = \alpha \det \begin{bmatrix} | &  & | &  & | \\ a_1 & \cdots  & a_i & \cdots  & a_n \\ | &  & | &  & | \end{bmatrix}
+$$
+
+
+
+***Proposition*** : 정방행렬 $A$가 가역적이 될 필요충분조건은 $A$의 행렬식이 영이 아니어야 한다.
+
+- ***Proof*** : $a_1, \dots , a_n$을 행렬 $A$의 열이라 하고, $a_1^{*}, \dots, a_n^{*}$을 Gram-Shmidt 직교화에 의해 얻은 직교벡터라고 하면, $A$가 가역적이지 않을 필요충분조건은 $a_1, \dots, a_n$이 선형종속인 경우, $a_1^{*}, \dots , a_n^{*}$의 적어도 하나는 영벡터인 경우, $\left\| a_1^{*} \right\| \left\| a_2^{*} \right\| \cdots \left\| a_n^{*} \right\|$ 이 영인경우, 행렬식이 영인 경우이다.
+
+
+`nump.linalg.det()`를 이용해 detAdetA를 구할 수 있다.
+
+```python
+A = np.matrix([[1, 2], 
+               [3, 4]])
+
+A_det = np.linalg.det(A)
+print('det A =', A_det)
+'''출력결과
+det A = -2.0000000000000004
+'''
+```
+
